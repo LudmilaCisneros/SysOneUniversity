@@ -1,5 +1,5 @@
 public class Deportivo extends Barco{
-    private int potenciaCV;
+    private final int potenciaCV;
 
     public Deportivo(int matricula,int eslora,int anioDeFabricacion,int potenciaCV){
     super(matricula,eslora,anioDeFabricacion);

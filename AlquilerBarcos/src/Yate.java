@@ -1,6 +1,6 @@
 public class Yate extends Barco{
-    private int potenciaCV;
-    private int nroCamarotes;
+    private final int potenciaCV;
+    private final int nroCamarotes;
 
     public Yate(int matricula,int eslora,int anioDeFabricacion,int potenciaCV,int nroCamarotes){
         super(matricula,eslora,anioDeFabricacion);

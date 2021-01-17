@@ -1,5 +1,5 @@
 public class Velero extends Barco{
-    private int nroMastiles;
+    private final int nroMastiles;
 
     public Velero(int matricula,int eslora,int anioDeFabricacion,int nroMastiles){
         super(matricula,eslora,anioDeFabricacion);
