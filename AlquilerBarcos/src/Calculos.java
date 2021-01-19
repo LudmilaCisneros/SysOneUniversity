@@ -1,41 +1,44 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public  class  Calculos {
 
     /**
      * @brief Encuentra y muestra el alquiler mas caro
      * @param listaAlquileres
      */
-    public static void mayorAlquiler(Alquiler[] listaAlquileres){
+    public static void mayorAlquiler(ArrayList<Alquiler> listaAlquileres){
         long mayorAlquiler = 0;
         int indexMax = 0;
 
-        for (int i=0;i<listaAlquileres.length;i++){
-            if(listaAlquileres[i].getValorFijoAlquilerCte() > mayorAlquiler){
-                mayorAlquiler = listaAlquileres[i].getValorFijoAlquilerCte();
+        for (int i=0;i<listaAlquileres.size();i++){
+            if(listaAlquileres.get(i).getValorFijoAlquilerCte() > mayorAlquiler){
+                mayorAlquiler = listaAlquileres.get(i).getValorFijoAlquilerCte();
                 indexMax = i;
             }
         }
         System.out.println(" ");
         System.out.println("El alquiler con mayor valor es: ");
-        Alquiler.printAlquiler(listaAlquileres[indexMax]);
+        Alquiler.printAlquiler(listaAlquileres.get(indexMax));
     }
 
     /**
      * @brief Encuentra y muestra el alquiler mas barato
      * @param listaAlquileres
      */
-    public static void menorAlquiler(Alquiler[] listaAlquileres){
+    public static void menorAlquiler(ArrayList<Alquiler> listaAlquileres){
         long menorAlquiler = Long.MAX_VALUE;
         int indexMin = 0;
 
-        for (int i=0;i<listaAlquileres.length;i++){
+        for (int i=0;i<listaAlquileres.size();i++){
 
-            if(listaAlquileres[i].getValorFijoAlquilerCte() < menorAlquiler){
-                menorAlquiler = listaAlquileres[i].getValorFijoAlquilerCte();
+            if(listaAlquileres.get(i).getValorFijoAlquilerCte() < menorAlquiler){
+                menorAlquiler = listaAlquileres.get(i).getValorFijoAlquilerCte();
                 indexMin = i;
             }
         }
         System.out.println("El alquiler con menor valor es: ");
-        Alquiler.printAlquiler(listaAlquileres[indexMin]);
+        Alquiler.printAlquiler(listaAlquileres.get(indexMin));
     }
 
     /**
@@ -62,7 +65,7 @@ public  class  Calculos {
      * @brief Calcula el promedio mensual del valor de los alquileres
      * @param listaAlquileres
      */
-    public static int promedioMensual(Alquiler[] listaAlquileres){
+    public static void promedioMensual(ArrayList<Alquiler> listaAlquileres){
         int valorAlquiler;
         int[] contadores = {0,0,0,0,0,0,0,0,0,0,0,0};
         int[] acumuladores = {0,0,0,0,0,0,0,0,0,0,0,0};
@@ -109,14 +112,13 @@ public  class  Calculos {
             }
         }
         printearPromediosMensuales(acumuladores,contadores);
-        return 0;
     }
 
     /**
      * @brief Calcula el promedio anual del valor de los alquileres
      * @param listaAlquileres
      */
-    public static void promedioAnual(Alquiler[] listaAlquileres) {
+    public static void promedioAnual(ArrayList<Alquiler> listaAlquileres){
         int acumulador = 0;
         int contadorAlq = 0;
 
