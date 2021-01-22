@@ -2,13 +2,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Automovil {
+
+    private int id;
     private Modelo modelo;
     private List<Adicional> listaAdicionales;
 
-    public Automovil(Modelo modelo) {
+    public Automovil(int id, Modelo modelo) {
+        this.id = id;
         this.modelo = modelo;
         this.listaAdicionales = new ArrayList<>();
     }
+
+    public int getId() { return id; }
 
     public Modelo getModelo() {
         return modelo;
