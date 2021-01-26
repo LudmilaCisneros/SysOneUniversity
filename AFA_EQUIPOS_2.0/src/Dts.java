@@ -1,5 +1,3 @@
-import java.time.LocalDate;
-
 public class Dts {
     private int idDt;
     private String clubDirigido;

@@ -15,31 +15,55 @@ public class Jugadores implements Comparable<Jugadores> {
         this.listaContratos = new ArrayList<>();
     }
 
+    /** Ordena alfabeticamente
+     * @param j2
+     * @return int
+     */
     public int compareTo(Jugadores j2) {
         return this.getNombre().compareTo(j2.getNombre());
     }
 
-    public void agregarContrato(Contrato contrato){
-        this.listaContratos.add(contrato);
-    }
-
-    /** Indica si el jugador tiene algún contrato en la fecha pasada por param
-     * @param fecha
-     * @return
+    /** Primero verifica que no exista el contrato en el jugador, si no existe lo agrega a la lista de contratos
+     * @param contrato
+     * @return (true) si lo agregó, (false) si no.
      */
-    public boolean laFechaExisteDentroDeLosContratos(LocalDate fecha){ //REVISAR EL METODO NO COMPARA CORRECTAMENTE LAS FECHAS
+    public boolean agregarContrato(Contrato contrato){
         for (Contrato con:this.getListaContratos()) {
-            //if(fecha.after(con.getFechaIn()) && fecha.before(con.getFechaFin())){
-            if(fecha.compareTo(con.getFechaIn()) >= 0 && fecha.compareTo(con.getFechaFin())<= 0) {
-                return true;
+            if(con.equals(contrato)){
+                System.out.println("El jugador " + this.getNombre() + "posee un contrato duplicado.");
+                return false;
             }
         }
-        return false;
+        this.listaContratos.add(contrato);
+        return true;
     }
 
-    @Override
-    public String toString() {
-        return this.getNombre();
+    /** Indica si el jugador tiene algún contrato en la fecha pasada por param y que concuerden los cuit
+     * @param f
+     * @return (true) si existe un contrato en la fecha indicada
+     */
+    public Boolean laFechaExisteDentroDeLosContratos(LocalDate f, Equipos equipo){
+        boolean flag = false;
+
+        for (Contrato contrato:this.getListaContratos()) {
+            if (f.compareTo(contrato.getFechaIn()) >= 0 && f.compareTo(contrato.getFechaFin()) <= 0 && equipo.getCUIT() == contrato.getCuitEquipo()) {
+                flag = true;
+                break;
+            }
+        }
+        return flag;
+    }
+
+    /**
+     * Muestra el jugador
+     */
+    public void printJugador(){
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("Nombre: ").append(this.getNombre());
+        sb.append("\nDni: ").append(this.getDNI()).append("\n");
+
+        System.out.println(sb.toString());
     }
 
     public int getDNI() {

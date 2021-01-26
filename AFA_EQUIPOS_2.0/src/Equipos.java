@@ -25,7 +25,11 @@ public class Equipos {
     }
 
     public String getNombre() {
-        return nombre;
+        StringBuilder sb = new StringBuilder();
+        sb.append("**************");
+        sb.append("*").append(nombre).append("*");
+        sb.append("**************");
+        return sb.toString();
     }
 
     public void setNombre(String nombre) {

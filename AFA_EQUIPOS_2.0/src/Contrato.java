@@ -21,6 +21,12 @@ public class Contrato {
         return idContrato;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        Contrato aux = (Contrato) o;
+        return this.cuitEquipo == aux.cuitEquipo && this.dniJugador == aux.dniJugador && this.getFechaIn() == aux.getFechaIn() && this.getFechaFin() == aux.getFechaFin();
+    }
+
     public void setIdContrato(int idContrato) {
         this.idContrato = idContrato;
     }

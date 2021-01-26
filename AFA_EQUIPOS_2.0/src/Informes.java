@@ -1,51 +1,37 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
+import java.util.List;
 
 public class Informes {
 
-    /**Recorre la lista de jugadores del equipo verificando la existencia de un contrato den la fecha indicada
+    /**Recorre la lista de jugadores del equipo verificando la existencia de un contrato vigente en la fecha indicada
      * @param equipo
      * @param fecha
-     * @return
      */
-    public static void JugadoresPorFecha(Equipos equipo, LocalDate fecha){
+    public static void jugadoresPorFecha(Equipos equipo, LocalDate fecha){
         int contador = 0;
+        List<Jugadores> listaParaOrdenar = new ArrayList<>();
+
+        System.out.println(equipo.getNombre());
 
         for (Jugadores j:equipo.getListaJugadores()){
-            if(j.laFechaExisteDentroDeLosContratos(fecha)){
-                contador ++;
+            if(j.laFechaExisteDentroDeLosContratos(fecha,equipo)){
+                listaParaOrdenar.add(j);
             }
         }
-        System.out.println("Equipo " + equipo.getNombre() + " " + contador);
+        ordenarJugadoresYPrint(listaParaOrdenar);
     }
 
-/*
-    public static void cantJugadoresPorEquipo(Equipos equipo) {
-        System.out.println(equipo.getListaJugadores().size());
-    }
 
-    public static void ordenarJugadoresAlfabPorEquipo(Equipos equipo) {
-        Collections.sort(equipo.getListaJugadores());
-        System.out.println("-----------------------------------");
-        System.out.println("Jugadores ordenados alfabéticamente: ");
+    /** Ordena la lista alfabéticamente y printea
+     * @param listaAux
+     */
+    private static void ordenarJugadoresYPrint(List<Jugadores> listaAux){
+        Collections.sort(listaAux);
 
-        Collections.sort(equipo.getListaJugadores());
-        for (Jugadores j:equipo.getListaJugadores()) {
-            System.out.println(j.toString());
+        for (Jugadores j: listaAux){
+            j.printJugador();
         }
-
     }
-
-    public static void defensoresPorEquipo(Equipos equipo){
-        ArrayList<Jugadores> listaAux = equipo.getListaJugadores();
-        int contador = 0;
-        for (int i=0;i<equipo.getListaJugadores().size();i++){
-            if(listaAux.get(i).getPosicionEnCancha() > 1 && listaAux.get(i).getPosicionEnCancha() < 6){
-                contador++;
-            }
-        }
-        System.out.println(contador);
-    }*/
 } 
