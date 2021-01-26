@@ -8,9 +8,9 @@ import java.time.LocalDate;
 public class Main {
     public static void main (String[]args){
         /*DTS*/
-        Dts dt1 = new Dts("River Plate","Marcelo Gallardo");
-        Dts dt2 = new Dts("Boca Juniors", "Macri");
-        Dts dt3 = new Dts("Pedro Mendoza", "Independiente");
+        Dts dt1 = new Dts(1,"River Plate","Marcelo Gallardo");
+        Dts dt2 = new Dts(2,"Boca Juniors", "Macri");
+        Dts dt3 = new Dts(3,"Pedro Mendoza", "Independiente");
 
         /*ARMANDO EQUIPOS*/
         Equipos equipo1 = new Equipos(305879653,"River Plate",dt1);
@@ -27,9 +27,6 @@ public class Main {
         jugador1.agregarContrato(new Contrato(1,305879653,40987563,LocalDate.of(2019,1,12),LocalDate.of(2020,2,10),4));
         jugador1.agregarContrato(new Contrato(2,308796542,40987563,LocalDate.of(2015,1,12),LocalDate.of(2017,2,10),10));
         jugador2.agregarContrato(new Contrato(3,308796542,23698856,LocalDate.of(2019,1,12),LocalDate.of(2020,2,10),4));
-
-
-
 
 /*INFORMES
 c)Cuantos jugadores hubo en una fecha en los clubes ordenado alfabeticamente *EN TODOS**/
