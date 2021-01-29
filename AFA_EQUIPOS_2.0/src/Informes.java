@@ -1,3 +1,6 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -23,7 +26,6 @@ public class Informes {
         ordenarJugadoresYPrint(listaParaOrdenar);
     }
 
-
     /** Ordena la lista alfabéticamente y printea
      * @param listaAux
      */
@@ -33,5 +35,28 @@ public class Informes {
         for (Jugadores j: listaAux){
             j.printJugador();
         }
+    }
+    public static void cargarEquiposBD(List<Equipos> listaEquipos){
+        Connection conexion = null;
+
+        String usr = "root";
+        String pass = "";
+        String ConnectionStr = "jdbc:mariadb://localhost:3306/afa";
+        String query = "INSERT INTO equipo (cuit,nombre,dt) values (30568789,'River','Gallardo')";
+        //String ConnectionStr = DriverManager.getConnection("jdbc:mariadb://localhost:3306/DB?user=root&password=myPassword");
+
+        try{
+            //obtenemos el driver para mariadb
+            Class.forName("org.mariadb.jdbc.Driver");
+
+            //obtenemos la conexión
+            conexion = DriverManager.getConnection(ConnectionStr,usr,pass);
+
+            Statement instruccion = conexion.createStatement();
+            instruccion.execute(query);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 } 

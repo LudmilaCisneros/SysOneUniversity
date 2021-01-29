@@ -1,4 +1,6 @@
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Ludmila Cisneros
@@ -6,6 +8,8 @@ import java.time.LocalDate;
 
 public class Main {
     public static void main (String[]args){
+
+        List<Equipos> listaEquipos = new ArrayList<>();
         //*DTS*//
         Dts dt1 = new Dts(1,"River Plate","Marcelo Gallardo");
         Dts dt2 = new Dts(2,"Boca Juniors", "Macri");
@@ -33,6 +37,9 @@ public class Main {
         equipo2.getListaJugadores().add(jugador2);
         equipo2.getListaJugadores().add(jugador3);
 
+        listaEquipos.add(equipo1);
+        listaEquipos.add(equipo2);
+
         //*INFORMES*//
         //c)Cuantos jugadores hubo en una fecha en los clubes ordenado alfabeticamente *EN TODOS*
 
@@ -43,5 +50,8 @@ public class Main {
         Informes.jugadoresPorFecha(equipo1, LocalDate.of(2019,3,12));
         Informes.jugadoresPorFecha(equipo2, LocalDate.of(2019,3,12));
 
+        //*INSERT BD EQUIPOS*//
+        //Informes.cargarEquiposBD(listaEquipos);
+        equipo1.insert();
     }
 } 
