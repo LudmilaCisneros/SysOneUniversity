@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DAO<T> {
-    private static String connectionStr = "jdbc:mariadb://localhost:3306/afa";
-    private static String usr = "root";
-    private static String pass = "";
+    private final String connectionStr = "jdbc:mariadb://localhost:3306/afa";
+    private final String usr = "root";
+    private final String pass = "";
 
 
 

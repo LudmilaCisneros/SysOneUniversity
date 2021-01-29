@@ -8,8 +8,8 @@ import java.util.List;
 
 public class Main {
     public static void main (String[]args){
-
         List<Equipos> listaEquipos = new ArrayList<>();
+
         //*DTS*//
         Dts dt1 = new Dts(1,"River Plate","Marcelo Gallardo");
         Dts dt2 = new Dts(2,"Boca Juniors", "Macri");
@@ -25,7 +25,7 @@ public class Main {
         Jugadores jugador4 = new Jugadores(20154698, "Lucas", 10);
 
         //*CONTRATOS*//
-        jugador1.agregarContrato(new Contrato(1,305879653,40987563,LocalDate.of(2019,1,12),LocalDate.of(2020,2,10),4)); //
+        jugador1.agregarContrato(new Contrato(1,305879653,40987563, LocalDate.of(2019,1,12),LocalDate.of(2020,2,10),4)); //
         jugador1.agregarContrato(new Contrato(2,308796542,40987563,LocalDate.of(2015,3,5),LocalDate.of(2017,2,10),10));
         jugador2.agregarContrato(new Contrato(1,305879653,23698856,LocalDate.of(2019,1,12),LocalDate.of(2020,2,10),4)); //
         jugador2.agregarContrato(new Contrato(2,308796542,23698856,LocalDate.of(1990,5,6),LocalDate.of(2001,4,9),10));
@@ -50,8 +50,8 @@ public class Main {
         Informes.jugadoresPorFecha(equipo1, LocalDate.of(2019,3,12));
         Informes.jugadoresPorFecha(equipo2, LocalDate.of(2019,3,12));
 
-        //*INSERT BD EQUIPOS*//
-        //Informes.cargarEquiposBD(listaEquipos);
-        equipo1.insert();
+        //QUERYs
+        Controlador.menuQuerys(listaEquipos);
+
     }
 } 

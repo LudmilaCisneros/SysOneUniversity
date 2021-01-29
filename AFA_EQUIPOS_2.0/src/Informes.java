@@ -36,6 +36,7 @@ public class Informes {
             j.printJugador();
         }
     }
+    /*
     public static void cargarEquiposBD(List<Equipos> listaEquipos){
         Connection conexion = null;
 
@@ -58,5 +59,5 @@ public class Informes {
             e.printStackTrace();
         }
 
-    }
+    }*/
 } 

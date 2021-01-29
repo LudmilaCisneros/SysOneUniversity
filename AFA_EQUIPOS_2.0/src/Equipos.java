@@ -14,22 +14,10 @@ public class Equipos implements IQuery{//implements IQuery<Equipos>{
         this.listaJugadores = new ArrayList<>();
 
     }
-
-    public int getCUIT() {
-        return CUIT;
+    public void printNombreEquipo(){
+        System.out.print("Club: " + this.nombre);
     }
 
-    public void setCUIT(int CUIT) {
-        this.CUIT = CUIT;
-    }
-
-    public String getNombre() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("**************");
-        sb.append("*").append(nombre).append("*");
-        sb.append("**************");
-        return sb.toString();
-    }
     public String construirQuery(String tipo){
         StringBuilder sb = new StringBuilder();
         //"INSERT INTO equipo (cuit,nombre,dt) values (30568789,'River','Gallardo')";
@@ -64,22 +52,20 @@ public class Equipos implements IQuery{//implements IQuery<Equipos>{
                 throw new RegistroDuplicadoException();
             }
         }
-        catch(RegistroDuplicadoException ex){
-            ex.printStackTrace();
-        }
         catch (Exception e){
-            e.printStackTrace(); //REVISAR MANEJO DE EXCEPCIONES
+            System.out.println(e.getMessage()); //REVISAR MANEJO DE EXCEPCIONES
         }
 
         finally {
             if(result){
                 System.out.println("El insert del equipo: " + this.getNombre() + " fue exitoso.");
             }else{
-                System.out.println("Ha ocurrido un error al insertar el equipo: " + this.getNombre() + ".");
+                System.out.println("Ha ocurrido un error al insertar ");
+                this.printNombreEquipo();
+                System.out.println(".");
             }
         }
     }
-    /*
     public List<String> select() {
         List<String> lista = new ArrayList<>();
         lista = null;
@@ -88,7 +74,7 @@ public class Equipos implements IQuery{//implements IQuery<Equipos>{
 
         try{
             consulta = new DAO<>(); //sb.toString()
-            lista = consulta.hacerSelect("Equipos",query);
+            //lista = consulta.hacerSelect("Equipos",query);
         }
         catch(Exception e){
             e.printStackTrace();
@@ -101,20 +87,22 @@ public class Equipos implements IQuery{//implements IQuery<Equipos>{
             }
         }
         return lista;
-    }*/
-
-
-
-    public boolean update(Equipos datos) {
-        return false;
     }
 
+    public int getCUIT() {
+        return CUIT;
+    }
 
+    public void setCUIT(int CUIT) {
+        this.CUIT = CUIT;
+    }
 
-
-
-    public boolean delete(Equipos datos) {
-        return false;
+    public String getNombre() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("**************");
+        sb.append("*").append(nombre).append("*");
+        sb.append("**************");
+        return sb.toString();
     }
 
     public void setNombre(String nombre) {
@@ -136,7 +124,5 @@ public class Equipos implements IQuery{//implements IQuery<Equipos>{
     public void setListaJugadores(List<Jugadores> listaJugadores) {
         this.listaJugadores = listaJugadores;
     }
-
-
 
 }
