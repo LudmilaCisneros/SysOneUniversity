@@ -11,8 +11,8 @@ public class Main {
         List<Equipos> listaEquipos = new ArrayList<>();
 
         //*DTS*//
-        Dts dt1 = new Dts(1,"River Plate","Marcelo Gallardo");
-        Dts dt2 = new Dts(2,"Boca Juniors", "Macri");
+        Dts dt1 = new Dts("River Plate","Marcelo Gallardo",1);
+        Dts dt2 = new Dts("Boca Juniors", "Macri",2);
 
         //*ARMANDO EQUIPOS*//
         Equipos equipo1 = new Equipos(305879653,"River Plate",dt1);

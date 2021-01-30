@@ -3,11 +3,17 @@ public class Dts {
     private String clubDirigido;
     private String nombre;
 
-
-    public Dts(int idDt, String clubDirigido, String nombre) {
-        this.idDt = idDt;
-        this.clubDirigido = clubDirigido;
+    public Dts(String nombre){
         this.nombre = nombre;
+    }
+
+    public Dts(String nombre,String clubDirigido){
+        this.nombre = nombre;
+        this.clubDirigido = clubDirigido;
+    }
+    public Dts(String clubDirigido, String nombre,int idDt){
+        this(nombre,clubDirigido);
+        this.idDt = idDt;
     }
 
     public String getClubDirigido() {

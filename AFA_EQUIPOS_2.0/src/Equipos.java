@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Equipos implements IQuery{//implements IQuery<Equipos>{
+public class Equipos{
     private int CUIT;// PK
     private String nombre;
     private Dts dt;
@@ -12,7 +12,15 @@ public class Equipos implements IQuery{//implements IQuery<Equipos>{
         this.nombre = nombre;
         this.dt = dt;
         this.listaJugadores = new ArrayList<>();
+    }
 
+    @Override
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("Nombre: ").append(this.nombre).append("\n");
+        sb.append("Cuit: ").append(this.CUIT).append("\n");
+        sb.append("Dt: ").append(this.dt.getNombre()).append(" ");
+        return sb.toString();
     }
     public void printNombreEquipo(){
         System.out.print("Club: " + this.nombre);
@@ -20,7 +28,6 @@ public class Equipos implements IQuery{//implements IQuery<Equipos>{
 
     public String construirQuery(String tipo){
         StringBuilder sb = new StringBuilder();
-        //"INSERT INTO equipo (cuit,nombre,dt) values (30568789,'River','Gallardo')";
         switch (tipo){
             case "INSERT":
                 sb.append("INSERT INTO equipo (cuit,nombre,dt) values (");
@@ -28,13 +35,9 @@ public class Equipos implements IQuery{//implements IQuery<Equipos>{
                 sb.append("'").append(this.nombre).append("',");
                 sb.append("'").append(this.dt.getNombre()).append("');");
                 break;
-            case "SELECTALL"://TODOS
-                sb.append("SELECT * from equipo;");
-                break;
-            //case "SELECT "
-            //delete
-            //update
-
+            //case "SELECTONE"
+            //case "DELETE"
+            //case "UPDATE"
         }
         return sb.toString();
     }
@@ -45,47 +48,27 @@ public class Equipos implements IQuery{//implements IQuery<Equipos>{
         DAO<Equipos> consulta;
         String query = this.construirQuery("INSERT");
 
-        try{
-            consulta = new DAO<>(); //sb.toString()
-            result = consulta.hacerInsert(this,query);
-            if(!result){
-                throw new RegistroDuplicadoException();
-            }
-        }
-        catch (Exception e){
-            System.out.println(e.getMessage()); //REVISAR MANEJO DE EXCEPCIONES
-        }
+        consulta = new DAO<>(); //sb.toString()
+        result = consulta.hacerInsert(this,query);
 
-        finally {
-            if(result){
-                System.out.println("El insert del equipo: " + this.getNombre() + " fue exitoso.");
-            }else{
-                System.out.println("Ha ocurrido un error al insertar ");
-                this.printNombreEquipo();
-                System.out.println(".");
-            }
+        if(result){
+            System.out.println("El insert del equipo: " + this.getNombre() + " fue exitoso.");
+        }else{
+            System.out.println("Ha ocurrido un error al insertar ");
+            this.printNombreEquipo();
+            System.out.println(".");
         }
     }
-    public List<String> select() {
-        List<String> lista = new ArrayList<>();
+
+    public static List<Equipos> select() {
+        List<Equipos> lista = new ArrayList<>();
         lista = null;
         DAO<Equipos> consulta;
-        String query = this.construirQuery("SELECTALL");
+        String query = ("SELECT * from equipo;");
 
-        try{
-            consulta = new DAO<>(); //sb.toString()
-            //lista = consulta.hacerSelect("Equipos",query);
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
-        finally {
-            if(lista != null){
-                System.out.println("El insert del equipo: " + this.getNombre() + " fue exitoso.");
-            }else{
-                System.out.println("Ha ocurrido un error al insertar el equipo: " + this.getNombre() + ".");
-            }
-        }
+        consulta = new DAO<>(); //sb.toString()
+        lista = consulta.hacerSelect("Equipos",query);
+
         return lista;
     }
 

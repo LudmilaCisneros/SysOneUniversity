@@ -11,9 +11,6 @@ public class DAO<T> {
     private final String usr = "root";
     private final String pass = "";
 
-
-
-    //IF EXISTE EL EQUIPO
     public boolean hacerInsert(T datos, String query) {
         Connection conexion = null;
         boolean result = true;
@@ -28,73 +25,48 @@ public class DAO<T> {
             instruccion.executeQuery(query);
         } catch (Exception e) {
             result = false;
-            e.printStackTrace();
-        } finally {
+            System.out.println(e.getMessage());
+        }
+        finally {
             try {
                 if (conexion != null)
                     conexion.close();
             } catch (Exception ex) {
                 System.out.println("No se cerró la conexion con BD");
-                ex.printStackTrace();
+                System.out.println(ex.getMessage());
             }
         }
         return result;
     }
-/*
-    public List<String> hacerSelect(String tipo,String query) {
+
+    public List<Equipos> hacerSelect(String tipo,String query) {
         Connection conexion = null;
-        List<String> lista = new ArrayList<>();
-        boolean flag = true;
         boolean result = true;
+        List<Equipos> listaEq = new ArrayList<>();
 
         try {
             //obtenemos el driver para mariadb
             Class.forName("org.mariadb.jdbc.Driver");
-
             //obtenemos la conexión
             conexion = DriverManager.getConnection(connectionStr, usr, pass);
             Statement instruccion = conexion.createStatement();
             ResultSet rs = instruccion.executeQuery(query);
-
             while(rs.next()){
-                if(flag){
-                    flag = false;
-                    switch (tipo){
-                        case "Equipos":
-                            List<Equipos> listaEq = new ArrayList<>();
-                            break;
-                        case "Jugadores":
-                            List<Jugadores> listJug = new ArrayList<>();
-                            break;
-                        case "Dts":
-                            List<Dts> listDts = new ArrayList<>();
-                            break;
-                    }
-                }
-                switch (tipo){
-                    case "Equipos":
-
-                        lista.add(rs.getInt("cuit"),rs.getString("nombre"),rs.getString("dt"));
-                        break;
-                    case "Jugadores":
-                    case "Dts":
-                        break;
-                }
-
+                listaEq.add(new Equipos(rs.getInt("cuit"), rs.getString("nombre"), new Dts(rs.getString("dt"))));
             }
         } catch (Exception e) {
             result = false;
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         } finally {
             try {
                 if (conexion != null)
                     conexion.close();
             } catch (Exception ex) {
                 System.out.println("No se cerró la conexion con BD");
-                ex.printStackTrace();
+                System.out.println(ex.getMessage());
             }
         }
-        return lista;
-    }*/
+        return listaEq;
+    }
 }
 
