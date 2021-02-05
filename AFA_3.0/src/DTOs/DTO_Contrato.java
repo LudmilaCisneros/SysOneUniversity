@@ -2,9 +2,10 @@ package DTOs;
 
 import Entidades.Contrato;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Date;
+
 
 public class DTO_Contrato {
     private int DTO_idContrato; //PK
@@ -23,12 +24,12 @@ public class DTO_Contrato {
         this.DTO_posicion = contrato.getPosicion();
     }
 
-    public DTO_Contrato(int idContrato, int dniJugador, int cuitEquipo, Date fInicial, Date fFinal, int posicion){
+    public DTO_Contrato(int idContrato, int dniJugador, int cuitEquipo, LocalDate fInicial, LocalDate fFinal, int posicion){
         this.DTO_idContrato = idContrato;
         this.DTO_cuitEquipo = cuitEquipo;
         this.DTO_dniJugador = dniJugador;
-        this.DTO_fechaIn = fInicial.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        this.DTO_fechaFin = fInicial.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        this.DTO_fechaIn = fInicial;
+        this.DTO_fechaFin = fFinal;
         this.DTO_posicion = posicion;
     }
 

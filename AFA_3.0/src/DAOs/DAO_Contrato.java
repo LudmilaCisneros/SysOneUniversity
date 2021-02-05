@@ -54,7 +54,8 @@ public class DAO_Contrato  {
             Statement instruccion = conexion.createStatement();
             ResultSet rs = instruccion.executeQuery(query);
             while(rs.next()){
-                listaC.add(new DTO_Contrato(rs.getInt("idContrato"),rs.getInt("dniJugador"), rs.getInt("cuitEquipo"),rs.getDate("fInicial"), rs.getDate("fFinal"), rs.getInt("posicion")));
+                listaC.add(new DTO_Contrato(rs.getInt("idContrato"), rs.getInt("dniJugador"),
+                        rs.getInt("cuitEquipo"),rs.getDate("fInicial").toLocalDate(), rs.getDate("fFinal").toLocalDate(), rs.getInt("posicion")));
             }
         } catch (Exception e) {
             result = false;
