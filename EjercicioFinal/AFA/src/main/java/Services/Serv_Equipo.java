@@ -4,23 +4,49 @@ import DTOs.DTO_Equipo;
 import Entities.*;
 import Repositories.Repo_Equipo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-
+@Service
 public class Serv_Equipo implements IServ_Equipo{
 
     @Autowired//inyeccion de dependencia
     Repo_Equipo repoEquipo;
 
+    @Autowired
+    Serv_Jugador servJugador;
+
+    @Override
+    public DTO_Equipo obtenerEquipo(int cuitEquipo) {
+        return convertirEquipoADTO(repoEquipo.findById(cuitEquipo).get());
+    }
+
+    @Override
+    public void insertarEquipo(DTO_Equipo dtoEquipo) {
+        repoEquipo.save(convertirDTOaEquipo(dtoEquipo));
+    }
+
+    @Override
+    public void modificarEquipo(int cuitEquipo, DTO_Equipo dtoEquipo) {
+        Equipo equipo = convertirDTOaEquipo(dtoEquipo);
+        equipo.setCUIT(cuitEquipo);
+        repoEquipo.save(equipo);
+    }
+
+    @Override
+    public void eliminarEquipo(int cuitEquipo) {
+        repoEquipo.deleteById(cuitEquipo);
+    }
+
     /** Convierte un Equipo a DTO_Equipo
      * @param eq
      * @return eqDTO
      */
-    public static DTO_Equipo convertirEquipoADTO(Equipo eq) {
+    public DTO_Equipo convertirEquipoADTO(Equipo eq) {
         return new DTO_Equipo(eq);
     }
 
@@ -36,7 +62,7 @@ public class Serv_Equipo implements IServ_Equipo{
      * @param list
      * @return
      */
-    public  static List<Equipo> convertirDTOAEquipos(List<DTO_Equipo> list){
+    public List<Equipo> convertirDTOAEquipos(List<DTO_Equipo> list){
         List<Equipo> listEq = new ArrayList<>();
         for (DTO_Equipo dto_equipo : list) {
             listEq.add(convertirDTOaEquipo(dto_equipo));
@@ -79,7 +105,7 @@ public class Serv_Equipo implements IServ_Equipo{
         System.out.println(equipo.dibujarNombre());
 
         for (Jugador j : equipo.getListaJugadores()) {
-            if (Serv_Jugador.laFechaExisteDentroDeLosContratos(j,fecha, equipo)) {
+            if (servJugador.laFechaExisteDentroDeLosContratos(j,fecha, equipo)) {
                 listaParaOrdenar.add(j);
             }
         }
@@ -92,7 +118,7 @@ public class Serv_Equipo implements IServ_Equipo{
         Collections.sort(listaAux);
 
         for (Jugador j: listaAux){
-            Serv_Jugador.printJugador(j);
+            servJugador.printJugador(j);
         }
     }
 
