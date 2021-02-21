@@ -4,38 +4,14 @@ import DTOs.DTO_Contrato;
 import Entities.*;
 import Repositories.Repo_Contrato;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
 public class Serv_Contrato implements IServ_Contrato{
 
     @Autowired
     Repo_Contrato repoContrato;
-
-    @Override
-    public DTO_Contrato obtenerContrato(int idContrato) {
-        return convertirContratoADTO(repoContrato.findById(idContrato).get());
-    }
-
-    @Override
-    public void insertarContrato(DTO_Contrato dtoContrato) {
-        repoContrato.save(convertirDTOAContrato(dtoContrato));
-    }
-
-    @Override
-    public void modificarContrato(int idContrato, DTO_Contrato dtoContrato) {
-        Contrato contrato = convertirDTOAContrato(dtoContrato);
-        contrato.setIdContrato(idContrato);
-        repoContrato.save(contrato);
-    }
-
-    @Override
-    public void eliminarContrato(int idContrato) {
-        repoContrato.deleteById(idContrato);
-    }
 
     @Override
     public void printContrato(Contrato c) {

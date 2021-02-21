@@ -2,43 +2,18 @@ package Services;
 
 import DTOs.DTO_Jugador;
 import Entities.*;
-import Repositories.Repo_Jugador;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
-public class Serv_Jugador implements IServ_Jugador{
-
-    @Autowired
-    Repo_Jugador repoJugador;
-
-    public DTO_Jugador obtenerJugador(int dniJugador) {
-        return convertirJugadorADTO(repoJugador.findById(dniJugador).get());
-    }
-
-    public void insertarJugador(DTO_Jugador dtoJugador) {
-        repoJugador.save(convertirDTOAJugador(dtoJugador));
-    }
-
-    public void modificarJugador(int dniJugador, DTO_Jugador dtoJugador) {
-        Jugador jugador = convertirDTOAJugador(dtoJugador);
-        jugador.setDNI(dniJugador);
-        repoJugador.save(jugador);
-    }
-
-    public void eliminarJugador(int dniJugador) {
-        repoJugador.deleteById(dniJugador);
-    }
+public class Serv_Jugador{
 
     /** Convierte una lista de DTO jugadores a jugadores
      * @param listaDTO
      * @return
      */
-    public List<Jugador> convertirJugadoresDTOaJugadores(List<DTO_Jugador> listaDTO){
+    private List<Jugador> convertirJugadoresDTOaJugadores(List<DTO_Jugador> listaDTO){
         List<Jugador> listaJ = new ArrayList<>();
 
         for (int i=0;i<listaDTO.size();i++){
@@ -48,22 +23,34 @@ public class Serv_Jugador implements IServ_Jugador{
         return listaJ;
     }
 
-    public DTO_Jugador convertirJugadorADTO(Jugador jugador) {
+    /** Convierte un jugador a DTO jugador
+     * @param jugador
+     * @return
+     */
+    public static DTO_Jugador convertirJugadorADTO(Jugador jugador) {
         return new DTO_Jugador(jugador);
     }
 
-    public Jugador convertirDTOAJugador(DTO_Jugador jDTO) {
+
+    /** Convierte un DTO a jugador
+     * @param jDTO
+     * @return
+     */
+    public static Jugador convertirDTOAJugador(DTO_Jugador jDTO) {
         return new Jugador(jDTO);
     }
 
-    public void printJugadores(List<Jugador> jugadores){
+    public static void printJugadores(List<Jugador> jugadores){
         for (Jugador j: jugadores) {
             printJugador(j);
             System.out.println("\n");
         }
     }
 
-    public void printJugador(Jugador j){
+    /**
+     * Muestra el jugador
+     */
+    public static void printJugador(Jugador j){
         StringBuilder sb = new StringBuilder();
 
         sb.append("Nombre: ").append(j.getNombre());
@@ -73,11 +60,42 @@ public class Serv_Jugador implements IServ_Jugador{
         System.out.println(sb.toString());
     }
 
+    public String construirQuery(DTO_Jugador jugador, String tipo) {
+        StringBuilder sb = new StringBuilder();
+        switch (tipo) {
+            case "INSERT":
+                sb.append("INSERT INTO jugador (dni,nombre,posicionActual) values (");
+                sb.append(jugador.getDTO_DNI()).append(",");
+                sb.append("'").append(jugador.getDTO_nombre()).append("',");
+                sb.append("'").append(jugador.getDTO_posicionActual()).append("');");
+                break;
+            //case "READ":
+            //break;
+            //case "DELETE"
+            //case "UPDATE"
+        }
+        return sb.toString();
+    }
+    /** Primero verifica que no exista el contrato en el jugador, si no existe lo agrega a la lista de contratos
+     * @param contrato
+     * @return (true) si lo agregó, (false) si no.
+     */
+    public boolean agregarContrato(Jugador jugador, Contrato contrato){
+        for (Contrato con:jugador.getListaContratos()) {
+            if(con.equals(contrato)){
+                System.out.println("El jugador " + jugador.getNombre() + "posee un contrato duplicado.");
+                return false;
+            }
+        }
+        jugador.getListaContratos().add(contrato);
+        return true;
+    }
+
     /** Indica si el jugador tiene algún contrato en la fecha pasada por param y que concuerden los cuit
      * @param f
      * @return (true) si existe un contrato en la fecha indicada
      */
-    public Boolean laFechaExisteDentroDeLosContratos(Jugador jugador,LocalDate f, Equipo equipo){
+    public static Boolean laFechaExisteDentroDeLosContratos(Jugador jugador,LocalDate f, Equipo equipo){
         boolean flag = false;
 
         for (Contrato contrato:jugador.getListaContratos()) {
