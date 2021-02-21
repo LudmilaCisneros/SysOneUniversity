@@ -6,15 +6,21 @@ import Entities.Contrato;
 import java.util.List;
 
 public interface IServ_Contrato {
+    DTO_Contrato obtenerContrato(int idContrato);
 
-    public  void printContrato(Contrato c);
+    void insertarContrato(DTO_Contrato dtoContrato);
 
-    public void printContratos(List<Contrato> contratos);
+    void modificarContrato(int idContrato, DTO_Contrato dtoContrato);
 
-    public  List<Contrato> convertirContratosDTOAContratos(List<DTO_Contrato> listaDTO);
+    void eliminarContrato(int idContrato);
 
-    public  DTO_Contrato convertirContratoADTO(Contrato contrato);
+    void printContrato(Contrato c);
 
-    public  Contrato convertirDTOAContrato(DTO_Contrato cDTO);
+    void printContratos(List<Contrato> contratos);
 
+    List<Contrato> convertirContratosDTOAContratos(List<DTO_Contrato> listaDTO);
+
+    DTO_Contrato convertirContratoADTO(Contrato contrato);
+
+    Contrato convertirDTOAContrato(DTO_Contrato cDTO);
 }

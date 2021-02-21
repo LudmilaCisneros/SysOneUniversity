@@ -14,6 +14,29 @@ public class Serv_Contrato implements IServ_Contrato{
     Repo_Contrato repoContrato;
 
     @Override
+    public DTO_Contrato obtenerContrato(int idContrato) {
+        return convertirContratoADTO(repoContrato.findById(idContrato).get());
+    }
+
+    @Override
+    public void insertarContrato(DTO_Contrato dtoContrato) {
+        repoContrato.save(convertirDTOAContrato(dtoContrato));
+    }
+
+    @Override
+    public void modificarContrato(int idContrato, DTO_Contrato dtoContrato) {
+        Contrato contrato = convertirDTOAContrato(dtoContrato);
+        contrato.setIdContrato(idContrato);
+        repoContrato.save(contrato);
+
+    }
+
+    @Override
+    public void eliminarContrato(int idContrato) {
+        repoContrato.deleteById(idContrato);
+    }
+
+    @Override
     public void printContrato(Contrato c) {
         StringBuilder sb = new StringBuilder();
 

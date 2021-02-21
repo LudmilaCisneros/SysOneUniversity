@@ -1,19 +1,27 @@
 package Services;
 
+import DTOs.DTO_Equipo;
 import Entities.*;
 
 import java.time.LocalDate;
 import java.util.List;
 
 public interface IServ_Equipo {
+    DTO_Equipo obtenerEquipo(int cuitEquipo);
 
-    public void equipoPrint(Equipo equipo);
+    void insertarEquipo(DTO_Equipo dtoEquipo);
 
-    public  void printTodosLosEquipos(List<Equipo> listaEq);
+    void modificarEquipo(int cuitEquipo, DTO_Equipo dtoEquipo);
 
-    public void jugadoresPorFecha(Equipo equipo, LocalDate fecha);
+    void eliminarEquipo(int cuitEquipo);
 
-    public  void ordenarJugadoresYPrint(List<Jugador> listaAux);
+    void equipoPrint(Equipo equipo);
+
+    void printTodosLosEquipos(List<Equipo> listaEq);
+
+    void jugadoresPorFecha(Equipo equipo, LocalDate fecha);
+
+    void ordenarJugadoresYPrint(List<Jugador> listaAux);
 
 }
 

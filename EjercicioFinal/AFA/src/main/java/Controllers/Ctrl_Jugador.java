@@ -1,42 +1,35 @@
 package Controllers;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import DTOs.DTO_Jugador;
+import Services.Serv_Jugador;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/Jugador")
 
 public class Ctrl_Jugador {
-    /*@Autowired
-    public AutomovilServiceImp automovilService;
+    @Autowired
+    Serv_Jugador servJugador;
 
-    @PostMapping("/automovil")
-    public void postAutomovil(@RequestBody AutomovilDTO automovilDTO) {
-        automovilService.insertarAutomovil(automovilDTO);
+    @GetMapping("/jugador/{id}")
+    public DTO_Jugador getJugador(@PathVariable int dniJugador) {
+        return servJugador.obtenerJugador(dniJugador);
     }
 
-    @DeleteMapping("/automovil/{id}")
-    public void deleteAutomovil(@PathVariable Integer idAutomovil) {
-        automovilService.eliminarAutomovil(idAutomovil);
+    @PostMapping("/jugador")
+    public void postJugador(@RequestBody DTO_Jugador dtoJugador) {
+        servJugador.insertarJugador(dtoJugador);
     }
 
-    @PutMapping("/automovil/{id}")
-    public void putAutomovil(@PathVariable Integer idAutomovil, @RequestBody AutomovilDTO automovilDTO) {
-        automovilService.modificarAutomovil(idAutomovil, automovilDTO);
+    @PutMapping("/jugador/{id}")
+    public void putJugador(@PathVariable int dniJugador, @RequestBody DTO_Jugador dtoJugador) {
+        servJugador.modificarJugador(dniJugador, dtoJugador);
     }
 
-    @GetMapping("/automovil/{id}")
-    public AutomovilDTO getAutomovil(@PathVariable Integer idAutomovil) {
-        return automovilService.consultarAutomovil(idAutomovil);
+    @DeleteMapping("/jugador/{id}")
+    public void deleteJugador(@PathVariable int dniJugador) {
+        servJugador.eliminarJugador(dniJugador);
     }
 
-    @GetMapping("/automovil")
-    public List<AutomovilDTO> getAutomoviles() {
-        return automovilService.consultarAutomoviles();
-    }
-
-    @GetMapping("/automovil/{id}")
-    public Float getPrecioAutomovil(@PathVariable Integer idAutomovil) {
-        return automovilService.precioAutomovil(idAutomovil);
-    }*/
 }

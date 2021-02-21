@@ -16,6 +16,31 @@ public class Serv_Equipo implements IServ_Equipo{
     @Autowired//inyeccion de dependencia
     Repo_Equipo repoEquipo;
 
+    @Autowired
+    Serv_Jugador servJugador;
+
+    @Override
+    public DTO_Equipo obtenerEquipo(int cuitEquipo) {
+        return convertirEquipoADTO(repoEquipo.findById(cuitEquipo).get());
+    }
+
+    @Override
+    public void insertarEquipo(DTO_Equipo dtoEquipo) {
+        repoEquipo.save(convertirDTOaEquipo(dtoEquipo));
+    }
+
+    @Override
+    public void modificarEquipo(int cuitEquipo, DTO_Equipo dtoEquipo) {
+        Equipo equipo = convertirDTOaEquipo(dtoEquipo);
+        equipo.setCUIT(cuitEquipo);
+        repoEquipo.save(equipo);
+    }
+
+    @Override
+    public void eliminarEquipo(int cuitEquipo) {
+        repoEquipo.deleteById(cuitEquipo);
+    }
+
     /** Convierte un Equipo a DTO_Equipo
      * @param eq
      * @return eqDTO
@@ -79,7 +104,7 @@ public class Serv_Equipo implements IServ_Equipo{
         System.out.println(equipo.dibujarNombre());
 
         for (Jugador j : equipo.getListaJugadores()) {
-            if (Serv_Jugador.laFechaExisteDentroDeLosContratos(j,fecha, equipo)) {
+            if (servJugador.laFechaExisteDentroDeLosContratos(j,fecha, equipo)) {
                 listaParaOrdenar.add(j);
             }
         }
@@ -92,7 +117,7 @@ public class Serv_Equipo implements IServ_Equipo{
         Collections.sort(listaAux);
 
         for (Jugador j: listaAux){
-            Serv_Jugador.printJugador(j);
+            servJugador.printJugador(j);
         }
     }
 
