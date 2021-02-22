@@ -20,6 +20,10 @@ public class Serv_Equipo implements IServ_Equipo{
     Serv_Jugador servJugador;
 
     @Override
+    public List<DTO_Equipo> obtenerEquipos(){
+        return convertirEquiposADTO((List<Equipo>) repoEquipo.findAll());
+    }
+    @Override
     public DTO_Equipo obtenerEquipo(int cuitEquipo) {
         return convertirEquipoADTO(repoEquipo.findById(cuitEquipo).get());
     }
@@ -61,12 +65,24 @@ public class Serv_Equipo implements IServ_Equipo{
      * @param list
      * @return
      */
-    public  static List<Equipo> convertirDTOAEquipos(List<DTO_Equipo> list){
+    public List<Equipo> convertirDTOAEquipos(List<DTO_Equipo> list){
         List<Equipo> listEq = new ArrayList<>();
         for (DTO_Equipo dto_equipo : list) {
             listEq.add(convertirDTOaEquipo(dto_equipo));
         }
         return listEq;
+    }
+
+    /** Convierte de equipos a DTO
+     * @param list
+     * @return
+     */
+    public List<DTO_Equipo> convertirEquiposADTO(List<Equipo> list){
+        List<DTO_Equipo> listDTOEq = new ArrayList<>();
+        for (Equipo equipo : list) {
+            listDTOEq.add(convertirEquipoADTO(equipo));
+        }
+        return listDTOEq;
     }
 
     /** Muestra todos los equipos

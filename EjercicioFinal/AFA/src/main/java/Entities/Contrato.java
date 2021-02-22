@@ -10,12 +10,19 @@ import java.time.LocalDate;
 public class Contrato {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "idContrato")
     private int idContrato; //PK
 
-    //DUDAS
+    @Column(name = "cuitEquipo")
     private int cuitEquipo; //FK
+
+    @Column(name = "dniJugador")
     private int dniJugador; //FK
+
+    @Column(name = "fechaInicial")
     private LocalDate fechaIn;
+
+    @Column(name = "fechaFinal")
     private LocalDate fechaFin;
 
     @Column(name = "posicion")

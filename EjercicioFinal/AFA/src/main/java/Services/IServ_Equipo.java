@@ -7,6 +7,9 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface IServ_Equipo {
+
+    List<DTO_Equipo> obtenerEquipos();
+
     DTO_Equipo obtenerEquipo(int cuitEquipo);
 
     void insertarEquipo(DTO_Equipo dtoEquipo);

@@ -1,5 +1,7 @@
 package Entities;
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
 
 @Entity
@@ -7,16 +9,18 @@ import javax.persistence.*;
 public class Dt{
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
+    @NotNull
     private int idDt;
 
+    @NotNull
     @Column(name = "nombreEquipo")
     private String clubDirigido;
 
+    @NotNull
     @Column(name = "nombre")
     private String nombre;
 
-    @OneToOne
-    @JoinColumn(name = "dni",referencedColumnName = "idDt")
+    @OneToOne(mappedBy = "equipo")
     private Equipo equipo;
 
     public Dt(){    };

@@ -12,20 +12,21 @@ public class Jugador implements Comparable<Jugador> {
 
     @Id
     @NotNull
-    //@GeneratedValue(strategy = GenerationType.AUTO)
     private int DNI;// PK
 
+    @NotNull
     @Column(name = "nombre")
     private String nombre;
 
+    @NotNull
     @Column(name = "posicionActual")
     private int posicionActual;
 
-    @OneToMany(mappedBy = "contrato")
+    @OneToMany(mappedBy = "contrato", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Contrato> listaContratos;
 
-    @ManyToMany//DUDAS
-    @JoinColumn(name = "dni",referencedColumnName = "cuit")//DUDAS
+    @ManyToOne
+    @JoinColumn(name = "cuitEquipo",referencedColumnName = "CUIT")//DUDAS
     private Equipo equipo;//se debe llamar igual que en el mappedBy
 
     public Jugador() { }

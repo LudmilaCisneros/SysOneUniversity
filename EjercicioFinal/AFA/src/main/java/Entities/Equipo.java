@@ -12,15 +12,19 @@ import java.util.List;
 public class Equipo{
     @Id
     @NotNull
+    @Column(name = "cuitEquipo")
     private int CUIT;// PK
 
+    @NotNull
     @Column(name = "nombre")
     private String nombre;
 
-    @OneToOne(mappedBy = "equipo")
+    @OneToOne
+    @NotNull
+    @JoinColumn(name = "idDt",referencedColumnName = "idDt")
     private Dt dt;
 
-    @OneToMany(mappedBy = "equipo",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "jugador",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Jugador> listaJugadores;
 
     public Equipo(){    };
