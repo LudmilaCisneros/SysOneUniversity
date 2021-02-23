@@ -1,6 +1,6 @@
-package Entities;
+package AFA.Entities;
 
-import DTOs.DTO_Contrato;
+import AFA.DTOs.DTO_Contrato;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -27,6 +27,9 @@ public class Contrato {
 
     @Column(name = "posicion")
     private int posicion;
+
+    @ManyToOne
+    private Jugador jugador;
 
     public Contrato(){  };
 
@@ -100,5 +103,13 @@ public class Contrato {
 
     public void setPosicion(int posicion) {
         this.posicion = posicion;
+    }
+
+    public Jugador getJugador() {
+        return jugador;
+    }
+
+    public void setJugador(Jugador jugador) {
+        this.jugador = jugador;
     }
 }

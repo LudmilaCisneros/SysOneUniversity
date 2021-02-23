@@ -1,7 +1,6 @@
-package Entities;
+package AFA.Entities;
 
-import DTOs.DTO_Equipo;
-import com.sun.istack.NotNull;
+import AFA.DTOs.DTO_Equipo;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -11,20 +10,18 @@ import java.util.List;
 @Table(name = "equipos")
 public class Equipo{
     @Id
-    @NotNull
-    @Column(name = "cuitEquipo")
+    @Column(name = "cuitEquipo",nullable = false)
     private int CUIT;// PK
 
-    @NotNull
-    @Column(name = "nombre")
+    @Column(name = "nombre",nullable = false)
     private String nombre;
 
-    @OneToOne
-    @NotNull
-    @JoinColumn(name = "idDt",referencedColumnName = "idDt")
+
+    //@JoinColumn(name = "Dts",referencedColumnName = "idDt")
+    @OneToOne(mappedBy = "equipoRel")
     private Dt dt;
 
-    @OneToMany(mappedBy = "jugador",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "equipo",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Jugador> listaJugadores;
 
     public Equipo(){    };
@@ -39,7 +36,7 @@ public class Equipo{
     public Equipo(DTO_Equipo eqDto){
         this.CUIT = eqDto.getDTO_CUIT();
         this.nombre = eqDto.getDTO_nombre();
-        this.dt = new Dt(eqDto.getDTO_dt());
+        this.dt.setIdDt(eqDto.getDTO_idDt());
     }
 
     public int getCUIT() {
@@ -62,14 +59,6 @@ public class Equipo{
         this.nombre = nombre;
     }
 
-    public Dt getDt() {
-        return dt;
-    }
-
-    public void setDt(Dt dt) {
-        this.dt = dt;
-    }
-
     public List<Jugador> getListaJugadores() {
         return listaJugadores;
     }
@@ -80,5 +69,13 @@ public class Equipo{
 
     public String getNombre() {
         return nombre;
+    }
+
+    public Dt getDt() {
+        return dt;
+    }
+
+    public void setDt(Dt dt) {
+        this.dt = dt;
     }
 }

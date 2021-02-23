@@ -1,4 +1,4 @@
-package Entities;
+package AFA.Entities;
 
 import com.sun.istack.NotNull;
 
@@ -9,19 +9,19 @@ import javax.persistence.*;
 public class Dt{
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
-    @NotNull
+    @Column(name = "idDt",nullable = false)
     private int idDt;
 
-    @NotNull
-    @Column(name = "nombreEquipo")
+    @Column(name = "nombreEquipo",nullable = false)
     private String clubDirigido;
 
-    @NotNull
-    @Column(name = "nombre")
+    @Column(name = "nombre",nullable = false)
     private String nombre;
 
-    @OneToOne(mappedBy = "equipo")
-    private Equipo equipo;
+    @OneToOne
+    @NotNull
+    @JoinColumn(name = "idDt",referencedColumnName = "dniJugador")
+    private Equipo equipoRel;
 
     public Dt(){    };
 

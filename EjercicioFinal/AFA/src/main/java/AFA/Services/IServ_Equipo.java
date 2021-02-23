@@ -1,7 +1,8 @@
-package Services;
+package AFA.Services;
 
-import DTOs.DTO_Equipo;
-import Entities.*;
+import AFA.DTOs.DTO_Equipo;
+import AFA.Entities.Equipo;
+import AFA.Entities.Jugador;
 
 import java.time.LocalDate;
 import java.util.List;

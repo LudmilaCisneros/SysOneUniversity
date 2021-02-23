@@ -1,5 +1,5 @@
-package Entities;
-import DTOs.DTO_Jugador;
+package AFA.Entities;
+import AFA.DTOs.DTO_Jugador;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
@@ -11,23 +11,20 @@ import java.util.List;
 public class Jugador implements Comparable<Jugador> {
 
     @Id
-    @NotNull
+    @Column(name = "dniJugador",nullable = false)
     private int DNI;// PK
 
-    @NotNull
-    @Column(name = "nombre")
+    @Column(name = "nombre",nullable = false)
     private String nombre;
 
-    @NotNull
-    @Column(name = "posicionActual")
+    @Column(name = "posicionActual",nullable = false)
     private int posicionActual;
 
-    @OneToMany(mappedBy = "contrato", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "jugador", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Contrato> listaContratos;
 
     @ManyToOne
-    @JoinColumn(name = "cuitEquipo",referencedColumnName = "CUIT")//DUDAS
-    private Equipo equipo;//se debe llamar igual que en el mappedBy
+    private Equipo equipo;
 
     public Jugador() { }
 

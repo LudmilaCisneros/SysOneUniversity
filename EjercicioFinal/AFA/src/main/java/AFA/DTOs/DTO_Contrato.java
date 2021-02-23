@@ -1,6 +1,6 @@
-package DTOs;
+package AFA.DTOs;
 
-import Entities.Contrato;
+import AFA.Entities.Contrato;
 
 import java.time.LocalDate;
 

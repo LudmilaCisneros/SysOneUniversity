@@ -1,13 +1,15 @@
-package Services;
+package AFA.Services;
 
-import DTOs.DTO_Contrato;
-import Entities.*;
-import Repositories.Repo_Contrato;
+import AFA.DTOs.DTO_Contrato;
+import AFA.Repositories.Repo_Contrato;
+import AFA.Entities.Contrato;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class Serv_Contrato implements IServ_Contrato{
 
     @Autowired

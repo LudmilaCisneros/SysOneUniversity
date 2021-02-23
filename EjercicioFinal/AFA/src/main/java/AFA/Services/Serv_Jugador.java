@@ -1,20 +1,29 @@
-package Services;
+package AFA.Services;
 
-import DTOs.DTO_Jugador;
-import Entities.*;
-import Repositories.Repo_Jugador;
+import AFA.DTOs.DTO_Jugador;
+import AFA.Repositories.Repo_Jugador;
+import AFA.Entities.Contrato;
+import AFA.Entities.Equipo;
+import AFA.Entities.Jugador;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class Serv_Jugador implements IServ_Jugador{
     @Autowired
     Serv_Jugador servJugador;
 
     @Autowired
     Repo_Jugador repoJugador;
+
+    @Override
+    public List<DTO_Jugador> obtenerJugadores(){
+        return convertirJugadoresADTO((List<Jugador>) repoJugador.findAll());
+    }
 
     @Override
     public DTO_Jugador obtenerJugador(int dniJugador) {
@@ -47,6 +56,20 @@ public class Serv_Jugador implements IServ_Jugador{
 
         for (int i=0;i<listaDTO.size();i++){
             listaJ.add(convertirDTOAJugador(listaDTO.get(i)));
+        }
+
+        return listaJ;
+    }
+
+    /** Convierte una lista de jugadores a dto
+     * @param list
+     * @return
+     */
+    public List<DTO_Jugador> convertirJugadoresADTO(List<Jugador> list){
+        List<DTO_Jugador> listaJ = new ArrayList<>();
+
+        for (Jugador jugador : list) {
+            listaJ.add(convertirJugadorADTO(jugador));
         }
 
         return listaJ;

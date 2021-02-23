@@ -1,6 +1,6 @@
-package Repositories;
+package AFA.Repositories;
 
-import Entities.Equipo;
+import AFA.Entities.Equipo;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

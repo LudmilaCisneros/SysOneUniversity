@@ -1,23 +1,22 @@
-package Controllers;
+package AFA.Controllers;
 
-import DTOs.DTO_Jugador;
-import Services.Serv_Jugador;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/jugador")
 public class Ctrl_Jugador {
+    /*
     @Autowired
     Serv_Jugador servJugador;
-/*
-    @GetMapping("/jugador/{id}")
-    public DTO_Jugador getJugador(@PathVariable int dniJugador) {
-        return servJugador.obtenerJugador(dniJugador);
-    }*/
-    @GetMapping("/ver/{DNI}")
-    public DTO_Jugador getJugador(@RequestParam(name = "DNI") int dniJugador){
-        return servJugador.obtenerJugador(dniJugador);
+
+    @GetMapping("/ver")//ALL
+    public List<DTO_Jugador> getJugadores(){
+        return servJugador.obtenerJugadores();
+    }
+
+    @GetMapping("/ver/{dniJugador}")
+    public DTO_Jugador getJugador(@PathVariable int dniJugador){
+    return servJugador.obtenerJugador(dniJugador);
     }
 
     @PostMapping("/insertar")
@@ -34,5 +33,5 @@ public class Ctrl_Jugador {
     public void deleteJugador(@PathVariable int dniJugador) {
         servJugador.eliminarJugador(dniJugador);
     }
-
+*/
 }

@@ -1,6 +1,6 @@
-package DTOs;
+package AFA.DTOs;
 
-import Entities.Jugador;
+import AFA.Entities.Jugador;
 
 public class DTO_Jugador {
     private int DTO_DNI;

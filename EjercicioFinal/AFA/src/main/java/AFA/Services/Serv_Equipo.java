@@ -1,16 +1,18 @@
-package Services;
+package AFA.Services;
 
-import DTOs.DTO_Equipo;
-import Entities.*;
-import Repositories.Repo_Equipo;
+import AFA.DTOs.DTO_Equipo;
+import AFA.Entities.Equipo;
+import AFA.Entities.Jugador;
+import AFA.Repositories.Repo_Equipo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-
+@Service
 public class Serv_Equipo implements IServ_Equipo{
 
     @Autowired//inyeccion de dependencia
@@ -58,8 +60,13 @@ public class Serv_Equipo implements IServ_Equipo{
      * @return eqDTO
      */
     public static Equipo convertirDTOaEquipo(DTO_Equipo eqDto) {
-        return new Equipo(eqDto);
-    }
+        Equipo equipo = new Equipo();
+        equipo.getDt().setIdDt(eqDto.getDTO_idDt());
+        equipo.setCUIT(eqDto.getDTO_CUIT());
+        equipo.setNombre(eqDto.getDTO_nombre());
+
+        return equipo;
+    }//
 
     /** Convierte de DTO a Equipos
      * @param list
@@ -67,6 +74,7 @@ public class Serv_Equipo implements IServ_Equipo{
      */
     public List<Equipo> convertirDTOAEquipos(List<DTO_Equipo> list){
         List<Equipo> listEq = new ArrayList<>();
+
         for (DTO_Equipo dto_equipo : list) {
             listEq.add(convertirDTOaEquipo(dto_equipo));
         }
@@ -101,10 +109,10 @@ public class Serv_Equipo implements IServ_Equipo{
         StringBuilder sb = new StringBuilder();
         sb.append("Nombre: ").append(equipo.getNombre()).append("\n");
         sb.append("Cuit: ").append(equipo.getCUIT()).append("\n");
-        sb.append("Dt: ").append(equipo.getDt().getNombre()).append(" ");
+        sb.append("Dt: ").append(equipo.getDt().getIdDt());
 
         System.out.println(sb.toString());
-    }
+        }
 
     //INFORMES
     /**

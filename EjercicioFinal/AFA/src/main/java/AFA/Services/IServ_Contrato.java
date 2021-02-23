@@ -1,7 +1,7 @@
-package Services;
+package AFA.Services;
 
-import DTOs.DTO_Contrato;
-import Entities.Contrato;
+import AFA.DTOs.DTO_Contrato;
+import AFA.Entities.Contrato;
 
 import java.util.List;
 
