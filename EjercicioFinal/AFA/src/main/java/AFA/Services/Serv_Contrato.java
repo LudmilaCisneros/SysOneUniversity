@@ -1,6 +1,8 @@
 package AFA.Services;
 
 import AFA.DTOs.DTO_Contrato;
+import AFA.DTOs.DTO_Equipo;
+import AFA.Entities.Equipo;
 import AFA.Repositories.Repo_Contrato;
 import AFA.Entities.Contrato;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,17 @@ public class Serv_Contrato implements IServ_Contrato{
 
     @Autowired
     Repo_Contrato repoContrato;
+
+    @Override
+    public List<DTO_Contrato> obtenerContratos()
+        {
+            return convertirContratosADTO((List<Contrato>) repoContrato.findAll());
+        }
+
+    //public List<DTO_Equipo> obtenerEquipos(){
+        //return convertirEquiposADTO((List<Equipo>) repoEquipo.findAll());
+    //}
+
 
     @Override
     public DTO_Contrato obtenerContrato(int idContrato) {
@@ -30,7 +43,6 @@ public class Serv_Contrato implements IServ_Contrato{
         Contrato contrato = convertirDTOAContrato(dtoContrato);
         contrato.setIdContrato(idContrato);
         repoContrato.save(contrato);
-
     }
 
     @Override
@@ -38,26 +50,6 @@ public class Serv_Contrato implements IServ_Contrato{
         repoContrato.deleteById(idContrato);
     }
 
-    @Override
-    public void printContrato(Contrato c) {
-        StringBuilder sb = new StringBuilder();
-
-        sb.append("ID CONTRATO: ").append(c.getIdContrato());
-        sb.append(" Dni Jugador: ").append(c.getDniJugador());
-        sb.append(" cuit Equipo: ").append(c.getCuitEquipo());
-        sb.append(" F INICIAL: ").append(c.getFechaIn());
-        sb.append(" F FINAL: ").append(c.getFechaFin());
-        sb.append(" POSICION: ").append(c.getPosicion()).append("\n");
-
-        System.out.println(sb.toString());
-    }
-
-    @Override
-    public void printContratos(List<Contrato> contratos) {
-        for (Contrato c: contratos) {
-            printContrato(c);
-        }
-    }
 
     @Override
     public List<Contrato> convertirContratosDTOAContratos(List<DTO_Contrato> listaDTO){
@@ -67,6 +59,15 @@ public class Serv_Contrato implements IServ_Contrato{
             contratos.add(convertirDTOAContrato(listaDTO.get(i)));
         }
         return contratos;
+    }
+
+    public List<DTO_Contrato> convertirContratosADTO(List<Contrato> list){
+        List<DTO_Contrato> listDTO = new ArrayList<>();
+
+        for (Contrato contrato : list) {
+            listDTO.add(convertirContratoADTO(contrato));
+        }
+        return listDTO;
     }
 
     @Override

@@ -1,7 +1,5 @@
 package AFA.Entities;
 
-import com.sun.istack.NotNull;
-
 import javax.persistence.*;
 
 @Entity
@@ -9,19 +7,17 @@ import javax.persistence.*;
 public class Dt{
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
-    @Column(name = "idDt",nullable = false)
-    private int idDt;
+    @Column(name = "id_dt",nullable = false)
+    private int id_dt;
 
-    @Column(name = "nombreEquipo",nullable = false)
+    @Column(name = "nombre_equipo",nullable = false)
     private String clubDirigido;
 
     @Column(name = "nombre",nullable = false)
     private String nombre;
 
-    @OneToOne
-    @NotNull
-    @JoinColumn(name = "idDt",referencedColumnName = "dniJugador")
-    private Equipo equipoRel;
+    @OneToOne(mappedBy = "dt")
+    private Equipo equipo;
 
     public Dt(){    };
 
@@ -33,9 +29,25 @@ public class Dt{
         this.nombre = nombre;
         this.clubDirigido = clubDirigido;
     }
-    public Dt(String clubDirigido, String nombre,int idDt){
+    public Dt(String clubDirigido, String nombre,int id_dt){
         this(nombre,clubDirigido);
-        this.idDt = idDt;
+        this.id_dt = id_dt;
+    }
+
+    public int getId_dt() {
+        return id_dt;
+    }
+
+    public void setId_dt(int id_dt) {
+        this.id_dt = id_dt;
+    }
+
+    public Equipo getEquipo() {
+        return equipo;
+    }
+
+    public void setEquipo(Equipo equipo) {
+        this.equipo = equipo;
     }
 
     public String getClubDirigido() {
@@ -43,11 +55,11 @@ public class Dt{
     }
 
     public int getIdDt() {
-        return idDt;
+        return id_dt;
     }
 
-    public void setIdDt(int idDt) {
-        this.idDt = idDt;
+    public void setIdDt(int id_dt) {
+        this.id_dt = id_dt;
     }
 
     public void setClubDirigido(String clubDirigido) {

@@ -2,20 +2,16 @@ package AFA.Services;
 
 import AFA.DTOs.DTO_Jugador;
 import AFA.Repositories.Repo_Jugador;
-import AFA.Entities.Contrato;
-import AFA.Entities.Equipo;
 import AFA.Entities.Jugador;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class Serv_Jugador implements IServ_Jugador{
-    @Autowired
-    Serv_Jugador servJugador;
 
     @Autowired
     Repo_Jugador repoJugador;
@@ -38,7 +34,7 @@ public class Serv_Jugador implements IServ_Jugador{
     @Override
     public void modificarJugador(int dniJugador, DTO_Jugador dtoJugador) {
         Jugador jugador = convertirDTOAJugador(dtoJugador);
-        jugador.setDNI(dniJugador);
+        jugador.setDniJugador(dniJugador);
         repoJugador.save(jugador);
     }
 
@@ -90,42 +86,6 @@ public class Serv_Jugador implements IServ_Jugador{
      */
     public Jugador convertirDTOAJugador(DTO_Jugador jDTO) {
         return new Jugador(jDTO);
-    }
-
-    public void printJugadores(List<Jugador> jugadores){
-        for (Jugador j: jugadores) {
-            printJugador(j);
-            System.out.println("\n");
-        }
-    }
-
-    /**
-     * Muestra el jugador
-     */
-    public void printJugador(Jugador j){
-        StringBuilder sb = new StringBuilder();
-
-        sb.append("Nombre: ").append(j.getNombre());
-        sb.append("\nDni: ").append(j.getDNI());
-        sb.append("\nPosicion Actual: ").append(j.getPosicionActual()).append("\n");
-
-        System.out.println(sb.toString());
-    }
-
-    /** Indica si el jugador tiene algún contrato en la fecha pasada por param y que concuerden los cuit
-     * @param f
-     * @return (true) si existe un contrato en la fecha indicada
-     */
-    public Boolean laFechaExisteDentroDeLosContratos(Jugador jugador,LocalDate f, Equipo equipo){
-        boolean flag = false;
-
-        for (Contrato contrato:jugador.getListaContratos()) {
-            if (f.compareTo(contrato.getFechaIn()) >= 0 && f.compareTo(contrato.getFechaFin()) <= 0 && equipo.getCUIT() == contrato.getCuitEquipo()) {
-                flag = true;
-                break;
-            }
-        }
-        return flag;
     }
 
 }

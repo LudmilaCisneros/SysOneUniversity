@@ -1,6 +1,5 @@
 package AFA.Entities;
 import AFA.DTOs.DTO_Jugador;
-import com.sun.istack.NotNull;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -8,37 +7,36 @@ import java.util.List;
 
 @Entity
 @Table(name = "jugadores")
-public class Jugador implements Comparable<Jugador> {
+public class Jugador {
 
     @Id
-    @Column(name = "dniJugador",nullable = false)
-    private int DNI;// PK
-
+    @Column(name = "dni_jugador",nullable = false)
+    private int dniJugador;// PK
     @Column(name = "nombre",nullable = false)
     private String nombre;
-
-    @Column(name = "posicionActual",nullable = false)
+    @Column(name = "posicion_actual",nullable = false)
     private int posicionActual;
+
+    @ManyToOne//manytomany
+    @JoinColumn(name = "dni_jugador", referencedColumnName = "cuit_equipo", insertable = false, updatable = false)
+    private Equipo equipo;
 
     @OneToMany(mappedBy = "jugador", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Contrato> listaContratos;
 
-    @ManyToOne
-    private Equipo equipo;
-
     public Jugador() { }
 
     public Jugador(int DNI, String nombre, int posicionActual) {
-        this.DNI = DNI;
+        this.dniJugador = DNI;
         this.nombre = nombre;
         this.posicionActual = posicionActual;
         this.listaContratos = new ArrayList<>();
     }
 
     public Jugador(DTO_Jugador jDTO) {
-        this.DNI = jDTO.getDTO_DNI();
-        this.nombre = jDTO.getDTO_nombre();
-        this.posicionActual = jDTO.getDTO_posicionActual();
+        this.dniJugador = jDTO.getDNI();
+        this.nombre = jDTO.getNombre();
+        this.posicionActual = jDTO.getPosicionActual();
         this.listaContratos = null;
     }
 
@@ -57,12 +55,12 @@ public class Jugador implements Comparable<Jugador> {
         return true;
     }
 
-    public int getDNI() {
-        return DNI;
+    public int getDniJugador() {
+        return dniJugador;
     }
 
-    public void setDNI(int DNI) {
-        this.DNI = DNI;
+    public void setDniJugador(int dniJugador) {
+        this.dniJugador = dniJugador;
     }
 
     public String getNombre() {
@@ -89,14 +87,12 @@ public class Jugador implements Comparable<Jugador> {
         this.listaContratos = listaContratos;
     }
 
+    public Equipo getEquipo() {
+        return equipo;
+    }
 
-    /* Ordena alfabeticamente
-     * @param j2
-     * @return int
-     */
-    @Override
-    public int compareTo(Jugador j2) {
-        return this.getNombre().compareTo(j2.getNombre());
+    public void setEquipo(Equipo equipo) {
+        this.equipo = equipo;
     }
 
 }

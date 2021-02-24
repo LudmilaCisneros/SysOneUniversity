@@ -3,43 +3,43 @@ package AFA.DTOs;
 import AFA.Entities.Equipo;
 
 public class DTO_Equipo {
-    private int DTO_CUIT;// PK
-    private String DTO_nombre;
-    private int DTO_idDt;
+    private int CUIT;
+    private String nombre;
+    private int idDt;
 
     public DTO_Equipo(Equipo equipo) {
-        this.DTO_CUIT = equipo.getCUIT();
-        this.DTO_nombre = equipo.getNombre();
-        this.DTO_idDt = equipo.getDt().getIdDt();
+        this.CUIT = equipo.getCUIT();
+        this.nombre = equipo.getNombre();
+        this.idDt = equipo.getDt().getIdDt();
     }
     public DTO_Equipo(int CUIT, String nombre, int idDt){
-        this.DTO_CUIT = CUIT;
-        this.DTO_nombre = nombre;
-        this.DTO_idDt = idDt;
+        this.CUIT = CUIT;
+        this.nombre = nombre;
+        this.idDt = idDt;
     }
 
-    public int getDTO_CUIT() {
-        return DTO_CUIT;
+    public int getCUIT() {
+        return this.CUIT;
     }
 
-    public void setDTO_CUIT(int DTO_CUIT) {
-        this.DTO_CUIT = DTO_CUIT;
+    public void setCUIT(int DTO_CUIT) {
+        this.CUIT = DTO_CUIT;
     }
 
-    public String getDTO_nombre() {
-        return DTO_nombre;
+    public String getNombre() {
+        return this.nombre;
     }
 
-    public void setDTO_nombre(String DTO_nombre) {
-        this.DTO_nombre = DTO_nombre;
+    public void setNombre(String DTO_nombre) {
+        this.nombre = DTO_nombre;
     }
 
-    public int getDTO_idDt() {
-        return DTO_idDt;
+    public int getIdDt() {
+        return this.idDt;
     }
 
-    public void setDTO_idDt(int DTO_idDt) {
-        this.DTO_idDt = DTO_idDt;
+    public void setIdDt(int DTO_idDt) {
+        this.idDt = DTO_idDt;
     }
 
 }

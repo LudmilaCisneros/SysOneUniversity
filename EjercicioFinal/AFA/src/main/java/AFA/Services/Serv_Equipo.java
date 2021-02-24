@@ -15,16 +15,14 @@ import java.util.List;
 @Service
 public class Serv_Equipo implements IServ_Equipo{
 
-    @Autowired//inyeccion de dependencia
-    Repo_Equipo repoEquipo;
-
     @Autowired
-    Serv_Jugador servJugador;
+    Repo_Equipo repoEquipo;
 
     @Override
     public List<DTO_Equipo> obtenerEquipos(){
         return convertirEquiposADTO((List<Equipo>) repoEquipo.findAll());
     }
+
     @Override
     public DTO_Equipo obtenerEquipo(int cuitEquipo) {
         return convertirEquipoADTO(repoEquipo.findById(cuitEquipo).get());
@@ -59,14 +57,9 @@ public class Serv_Equipo implements IServ_Equipo{
      * @param eqDto
      * @return eqDTO
      */
-    public static Equipo convertirDTOaEquipo(DTO_Equipo eqDto) {
-        Equipo equipo = new Equipo();
-        equipo.getDt().setIdDt(eqDto.getDTO_idDt());
-        equipo.setCUIT(eqDto.getDTO_CUIT());
-        equipo.setNombre(eqDto.getDTO_nombre());
-
-        return equipo;
-    }//
+    public Equipo convertirDTOaEquipo(DTO_Equipo eqDto) {
+        return new Equipo(eqDto);
+    }
 
     /** Convierte de DTO a Equipos
      * @param list
@@ -92,58 +85,5 @@ public class Serv_Equipo implements IServ_Equipo{
         }
         return listDTOEq;
     }
-
-    /** Muestra todos los equipos
-     * @param listaEq
-     */
-    public  void printTodosLosEquipos(List<Equipo> listaEq){
-        for (Equipo equipo : listaEq) {
-            equipoPrint(equipo);
-        }
-    }
-
-    /** Muestra un equipo
-     * @param equipo
-     */
-    public  void equipoPrint(Equipo equipo) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Nombre: ").append(equipo.getNombre()).append("\n");
-        sb.append("Cuit: ").append(equipo.getCUIT()).append("\n");
-        sb.append("Dt: ").append(equipo.getDt().getIdDt());
-
-        System.out.println(sb.toString());
-        }
-
-    //INFORMES
-    /**
-     * Recorre la lista de jugadores del equipo verificando la existencia de un contrato vigente en la fecha indicada
-     *
-     * @param equipo
-     * @param fecha
-     */
-    public void jugadoresPorFecha(Equipo equipo, LocalDate fecha) {
-        int contador = 0;
-        List<Jugador> listaParaOrdenar = new ArrayList<>();
-
-        System.out.println(equipo.dibujarNombre());
-
-        for (Jugador j : equipo.getListaJugadores()) {
-            if (servJugador.laFechaExisteDentroDeLosContratos(j,fecha, equipo)) {
-                listaParaOrdenar.add(j);
-            }
-        }
-        ordenarJugadoresYPrint(listaParaOrdenar);
-    }
-    /** Ordena la lista alfabéticamente y printea
-     * @param listaAux
-     */
-    public void ordenarJugadoresYPrint(List<Jugador> listaAux){
-        Collections.sort(listaAux);
-
-        for (Jugador j: listaAux){
-            servJugador.printJugador(j);
-        }
-    }
-
 
 }

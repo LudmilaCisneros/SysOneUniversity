@@ -25,7 +25,4 @@ public interface IServ_Jugador {
 
     Jugador convertirDTOAJugador(DTO_Jugador jDTO);
 
-    void printJugador(Jugador j);
-
-    Boolean laFechaExisteDentroDeLosContratos(Jugador jugador, LocalDate f, Equipo equipo);
 }

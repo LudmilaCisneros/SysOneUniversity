@@ -3,43 +3,54 @@ package AFA.DTOs;
 import AFA.Entities.Jugador;
 
 public class DTO_Jugador {
-    private int DTO_DNI;
-    private String DTO_nombre;
-    private int DTO_posicionActual;
+    private int DNI;
+    private String nombre;
+    private int posicionActual;
+    private int cuitEquipo;
 
     public DTO_Jugador(Jugador j){
-        this.DTO_DNI = j.getDNI();
-        this.DTO_nombre = j.getNombre();
-        this.DTO_posicionActual = j.getPosicionActual();
+        this.DNI = j.getDniJugador();
+        this.nombre = j.getNombre();
+        this.posicionActual = j.getPosicionActual();
+        this.cuitEquipo = j.getEquipo().getCUIT();
     }
 
-    public DTO_Jugador(int DNI, String nombre, int dto_posicionActual) {
-        this.DTO_DNI = DNI;
-        this.DTO_nombre = nombre;
-        DTO_posicionActual = dto_posicionActual;
+    public DTO_Jugador(int DNI, String nombre, int dto_posicionActual , int cuit_equipo) {
+        this.DNI = DNI;
+        this.nombre = nombre;
+        this.posicionActual = dto_posicionActual;
+        this.cuitEquipo = cuit_equipo;
     }
 
-    public int getDTO_DNI() {
-        return DTO_DNI;
+    public int getCuitEquipo() {
+        return cuitEquipo;
     }
 
-    public void setDTO_DNI(int DNI) {
-        this.DTO_DNI = DNI;
+    public void setCuitEquipo(int cuitEquipo) {
+        this.cuitEquipo = cuitEquipo;
     }
 
-    public String getDTO_nombre() {
-        return DTO_nombre;
+    public int getDNI() {
+        return DNI;
     }
 
-    public void setDTO_nombre(String nombre) {
-        this.DTO_nombre = nombre;
+    public void setDNI(int DNI) {
+        this.DNI = DNI;
     }
 
-    public int getDTO_posicionActual() {
-        return DTO_posicionActual;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setDTO_posicionActual(int DTO_posicionActual) {
-        this.DTO_posicionActual = DTO_posicionActual;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public int getPosicionActual() {
+        return posicionActual;
+    }
+
+    public void setPosicionActual(int DTO_posicionActual) {
+        this.posicionActual = DTO_posicionActual;
     }
 }

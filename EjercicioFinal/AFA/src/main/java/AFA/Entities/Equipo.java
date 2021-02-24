@@ -10,18 +10,17 @@ import java.util.List;
 @Table(name = "equipos")
 public class Equipo{
     @Id
-    @Column(name = "cuitEquipo",nullable = false)
+    @Column(name = "cuit_equipo",nullable = false)
     private int CUIT;// PK
 
     @Column(name = "nombre",nullable = false)
     private String nombre;
 
-
-    //@JoinColumn(name = "Dts",referencedColumnName = "idDt")
-    @OneToOne(mappedBy = "equipoRel")
+    @OneToOne
+    @JoinColumn(name = "id_dt", referencedColumnName = "id_dt")
     private Dt dt;
 
-    @OneToMany(mappedBy = "equipo",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "equipo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Jugador> listaJugadores;
 
     public Equipo(){    };
@@ -34,9 +33,9 @@ public class Equipo{
     }
 
     public Equipo(DTO_Equipo eqDto){
-        this.CUIT = eqDto.getDTO_CUIT();
-        this.nombre = eqDto.getDTO_nombre();
-        this.dt.setIdDt(eqDto.getDTO_idDt());
+        this.CUIT = eqDto.getCUIT();
+        this.nombre = eqDto.getNombre();
+        this.dt.setId_dt(eqDto.getIdDt());
     }
 
     public int getCUIT() {
@@ -45,14 +44,6 @@ public class Equipo{
 
     public void setCUIT(int CUIT) {
         this.CUIT = CUIT;
-    }
-
-    public String dibujarNombre() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("**************");
-        sb.append("*").append(nombre).append("*");
-        sb.append("**************");
-        return sb.toString();
     }
 
     public void setNombre(String nombre) {

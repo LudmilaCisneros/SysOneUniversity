@@ -1,11 +1,15 @@
 package AFA.Services;
 
 import AFA.DTOs.DTO_Contrato;
+import AFA.DTOs.DTO_Equipo;
 import AFA.Entities.Contrato;
 
 import java.util.List;
 
 public interface IServ_Contrato {
+
+    List<DTO_Contrato> obtenerContratos();
+
     DTO_Contrato obtenerContrato(int idContrato);
 
     void insertarContrato(DTO_Contrato dtoContrato);
@@ -13,10 +17,6 @@ public interface IServ_Contrato {
     void modificarContrato(int idContrato, DTO_Contrato dtoContrato);
 
     void eliminarContrato(int idContrato);
-
-    void printContrato(Contrato c);
-
-    void printContratos(List<Contrato> contratos);
 
     List<Contrato> convertirContratosDTOAContratos(List<DTO_Contrato> listaDTO);
 

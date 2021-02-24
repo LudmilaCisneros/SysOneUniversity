@@ -1,10 +1,7 @@
 package AFA.Services;
 
 import AFA.DTOs.DTO_Equipo;
-import AFA.Entities.Equipo;
-import AFA.Entities.Jugador;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public interface IServ_Equipo {
@@ -18,14 +15,6 @@ public interface IServ_Equipo {
     void modificarEquipo(int cuitEquipo, DTO_Equipo dtoEquipo);
 
     void eliminarEquipo(int cuitEquipo);
-
-    void equipoPrint(Equipo equipo);
-
-    void printTodosLosEquipos(List<Equipo> listaEq);
-
-    void jugadoresPorFecha(Equipo equipo, LocalDate fecha);
-
-    void ordenarJugadoresYPrint(List<Jugador> listaAux);
 
 }
 
