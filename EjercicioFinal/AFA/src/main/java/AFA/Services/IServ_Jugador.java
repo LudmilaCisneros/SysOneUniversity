@@ -19,10 +19,4 @@ public interface IServ_Jugador {
 
     void eliminarJugador(int dniJugador);
 
-    List<Jugador> convertirJugadoresDTOaJugadores(List<DTO_Jugador> listaDTO);
-
-    DTO_Jugador convertirJugadorADTO(Jugador jugador);
-
-    Jugador convertirDTOAJugador(DTO_Jugador jDTO);
-
 }

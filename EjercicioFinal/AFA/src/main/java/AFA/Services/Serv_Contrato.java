@@ -48,13 +48,11 @@ public class Serv_Contrato implements IServ_Contrato{
         repoContrato.deleteById(idContrato);
     }
 
-
-    @Override
     public List<Contrato> convertirContratosDTOAContratos(List<DTO_Contrato> listaDTO){
         List<Contrato> contratos = new ArrayList<>();
 
-        for (int i=0;i<listaDTO.size();i++){
-            contratos.add(convertirDTOAContrato(listaDTO.get(i)));
+        for (DTO_Contrato dto_contrato : listaDTO) {
+            contratos.add(convertirDTOAContrato(dto_contrato));
         }
         return contratos;
     }
@@ -68,16 +66,14 @@ public class Serv_Contrato implements IServ_Contrato{
         return listDTO;
     }
 
-    @Override
     public DTO_Contrato convertirContratoADTO(Contrato contrato) {
         return new DTO_Contrato(contrato);
     }
 
-    @Override
     public Contrato convertirDTOAContrato(DTO_Contrato cDTO) {
         Contrato c = new Contrato();
-        //Serv_Jugador sj = new Serv_Jugador();
         Jugador jugador = sj.convertirDTOAJugador(sj.obtenerJugador(cDTO.getJugador().getDniJugador()));
+
         c.setJugador(jugador);
 
         return c;

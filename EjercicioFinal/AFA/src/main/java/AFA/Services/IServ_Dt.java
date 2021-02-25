@@ -1,9 +1,6 @@
 package AFA.Services;
 
 import AFA.DTOs.DTO_Dt;
-import AFA.DTOs.DTO_Equipo;
-import AFA.Entities.Dt;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
