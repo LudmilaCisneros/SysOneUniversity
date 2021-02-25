@@ -4,29 +4,30 @@ import AFA.Entities.Contrato;
 
 import java.time.LocalDate;
 
-
 public class DTO_Contrato {
     private int idContrato; //PK
-    private int cuitEquipo; //FK
     private int dniJugador; //FK
     private LocalDate fechaIn;
     private LocalDate fechaFin;
     private int posicion;
+    private String nombreClub;
 
     public DTO_Contrato(Contrato contrato) {
         this.idContrato = contrato.getIdContrato();
         this.fechaIn = contrato.getFechaIn();
         this.fechaFin = contrato.getFechaFin();
         this.posicion = contrato.getPosicion();
+        this.dniJugador = contrato.getJugador().getDniJugador();
+        this.nombreClub = contrato.getNombreClub();
     }
 
-    public DTO_Contrato(int idContrato, int dniJugador, int cuitEquipo, LocalDate fInicial, LocalDate fFinal, int posicion){
+    public DTO_Contrato(int idContrato, int dniJugador, LocalDate fInicial, LocalDate fFinal, int posicion, String nombreClub){
         this.idContrato = idContrato;
-        this.cuitEquipo = cuitEquipo;
         this.dniJugador = dniJugador;
         this.fechaIn = fInicial;
         this.fechaFin = fFinal;
         this.posicion = posicion;
+        this.nombreClub = nombreClub;
     }
 
     public int getIdContrato() {
@@ -35,14 +36,6 @@ public class DTO_Contrato {
 
     public void setIdContrato(int DTO_idContrato) {
         this.idContrato = DTO_idContrato;
-    }
-
-    public int getCuitEquipo() {
-        return cuitEquipo;
-    }
-
-    public void setCuitEquipo(int DTO_cuitEquipo) {
-        this.cuitEquipo = DTO_cuitEquipo;
     }
 
     public int getDniJugador() {
@@ -75,5 +68,17 @@ public class DTO_Contrato {
 
     public void setPosicion(int DTO_posicion) {
         this.posicion = DTO_posicion;
+    }
+
+    public void setDniJugador(int dniJugador) {
+        this.dniJugador = dniJugador;
+    }
+
+    public String getNombreClub() {
+        return nombreClub;
+    }
+
+    public void setNombreClub(String nombreClub) {
+        this.nombreClub = nombreClub;
     }
 }

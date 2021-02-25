@@ -12,16 +12,12 @@ public class Contrato {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_contrato")
     private int idContrato; //PK
-
     @Column(name = "fecha_inicial")
     private LocalDate fechaIn;
-
     @Column(name = "fecha_final")
     private LocalDate fechaFin;
-
     @Column(name = "posicion")
     private int posicion;
-
     @Column(name = "nombre_club")
     private String nombreClub;
 

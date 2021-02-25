@@ -36,6 +36,7 @@ public class Equipo{
         this.CUIT = eqDto.getCUIT();
         this.nombre = eqDto.getNombre();
         this.dt.setId_dt(eqDto.getIdDt());
+        //this.dt = eqDto.getDt();//
     }
 
     public int getCUIT() {

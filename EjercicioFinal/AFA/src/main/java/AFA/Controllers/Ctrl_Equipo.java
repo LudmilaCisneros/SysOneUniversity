@@ -18,7 +18,7 @@ public class Ctrl_Equipo {
         return servEquipo.obtenerEquipos();
     }
 
-    @GetMapping("/ver/{CUIT}")
+    @GetMapping("/ver/{cuitEquipo}")
     public DTO_Equipo getEquipo(@PathVariable int cuitEquipo){
         return servEquipo.obtenerEquipo(cuitEquipo);
     }
@@ -28,12 +28,12 @@ public class Ctrl_Equipo {
         servEquipo.insertarEquipo(dtoEquipo);
     }
 /*
-    @PutMapping("/modificar/{CUIT}")
+    @PutMapping("/modificar/{cuitEquipo}")
     public void putEquipo(@PathVariable int cuitEquipo, @RequestBody DTO_Equipo dtoEquipo) {
         servEquipo.modificarEquipo(cuitEquipo, dtoEquipo);
     }
 
-    @DeleteMapping("/borrar/{id}")
+    @DeleteMapping("/borrar/{cuitEquipo}")
     public void deleteEquipo(@PathVariable int cuitEquipo) {
         servEquipo.eliminarEquipo(cuitEquipo);
     }

@@ -49,7 +49,7 @@ public class Serv_Equipo implements IServ_Equipo{
      * @param eq
      * @return eqDTO
      */
-    public static DTO_Equipo convertirEquipoADTO(Equipo eq) {
+    public DTO_Equipo convertirEquipoADTO(Equipo eq) {
         return new DTO_Equipo(eq);
     }
 

@@ -1,8 +1,6 @@
 package AFA.Services;
 
 import AFA.DTOs.DTO_Contrato;
-import AFA.DTOs.DTO_Equipo;
-import AFA.Entities.Equipo;
 import AFA.Repositories.Repo_Contrato;
 import AFA.Entities.Contrato;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,14 +17,9 @@ public class Serv_Contrato implements IServ_Contrato{
 
     @Override
     public List<DTO_Contrato> obtenerContratos()
-        {
-            return convertirContratosADTO((List<Contrato>) repoContrato.findAll());
-        }
-
-    //public List<DTO_Equipo> obtenerEquipos(){
-        //return convertirEquiposADTO((List<Equipo>) repoEquipo.findAll());
-    //}
-
+    {
+        return convertirContratosADTO((List<Contrato>) repoContrato.findAll());
+    }
 
     @Override
     public DTO_Contrato obtenerContrato(int idContrato) {

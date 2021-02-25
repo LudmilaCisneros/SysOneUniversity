@@ -18,7 +18,7 @@ public class Jugador {
     private int posicionActual;
 
     @ManyToOne//manytomany
-    @JoinColumn(name = "dni_jugador", referencedColumnName = "cuit_equipo", insertable = false, updatable = false)
+    @JoinColumn(name = "cuit_equipo")
     private Equipo equipo;
 
     @OneToMany(mappedBy = "jugador", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -26,10 +26,11 @@ public class Jugador {
 
     public Jugador() { }
 
-    public Jugador(int DNI, String nombre, int posicionActual) {
+    public Jugador(int DNI, String nombre, int posicionActual, Equipo equipo) {
         this.dniJugador = DNI;
         this.nombre = nombre;
         this.posicionActual = posicionActual;
+        this.equipo = equipo;
         this.listaContratos = new ArrayList<>();
     }
 
@@ -37,7 +38,7 @@ public class Jugador {
         this.dniJugador = jDTO.getDNI();
         this.nombre = jDTO.getNombre();
         this.posicionActual = jDTO.getPosicionActual();
-        this.listaContratos = null;
+        this.equipo.setCUIT(jDTO.getCuitEquipo());
     }
 
     /** Primero verifica que no exista el contrato en el jugador, si no existe lo agrega a la lista de contratos

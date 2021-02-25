@@ -18,12 +18,12 @@ public class Ctrl_Contrato {
     public List<DTO_Contrato> getContrato() {
         return servContrato.obtenerContratos();
     }
-    /*
+
     @GetMapping("/ver/{idContrato}")
     public DTO_Contrato getContrato(@PathVariable int idContrato) {
         return servContrato.obtenerContrato(idContrato);
     }
-
+/*
     @PostMapping("/insertar")
     public void postContrato(@RequestBody DTO_Contrato dtoContrato) {
         servContrato.insertarContrato(dtoContrato);

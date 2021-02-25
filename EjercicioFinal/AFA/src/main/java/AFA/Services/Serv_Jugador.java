@@ -1,6 +1,8 @@
 package AFA.Services;
 
+import AFA.DTOs.DTO_Equipo;
 import AFA.DTOs.DTO_Jugador;
+import AFA.Entities.Equipo;
 import AFA.Repositories.Repo_Jugador;
 import AFA.Entities.Jugador;
 
@@ -20,7 +22,9 @@ public class Serv_Jugador implements IServ_Jugador{
     public List<DTO_Jugador> obtenerJugadores(){
         return convertirJugadoresADTO((List<Jugador>) repoJugador.findAll());
     }
-
+    /*public List<DTO_Equipo> obtenerEquipos(){
+        return convertirEquiposADTO((List<Equipo>) repoEquipo.findAll());
+    }*/
     @Override
     public DTO_Jugador obtenerJugador(int dniJugador) {
         return convertirJugadorADTO(repoJugador.findById(dniJugador).get());
@@ -62,13 +66,12 @@ public class Serv_Jugador implements IServ_Jugador{
      * @return
      */
     public List<DTO_Jugador> convertirJugadoresADTO(List<Jugador> list){
-        List<DTO_Jugador> listaJ = new ArrayList<>();
+        List<DTO_Jugador> listaDTO = new ArrayList<>();
 
         for (Jugador jugador : list) {
-            listaJ.add(convertirJugadorADTO(jugador));
+            listaDTO.add(convertirJugadorADTO(jugador));
         }
-
-        return listaJ;
+        return listaDTO;
     }
 
     /** Convierte un jugador a DTO jugador
