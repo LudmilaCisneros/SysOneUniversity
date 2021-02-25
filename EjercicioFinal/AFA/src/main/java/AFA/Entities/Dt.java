@@ -1,12 +1,14 @@
 package AFA.Entities;
 
+import AFA.DTOs.DTO_Dt;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "dts")
 public class Dt{
+    //@GeneratedValue (strategy = GenerationType.AUTO)
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
     @Column(name = "id_dt",nullable = false)
     private int id_dt;
 
@@ -34,6 +36,12 @@ public class Dt{
         this.id_dt = id_dt;
     }
 
+    public Dt(DTO_Dt dtoDt) {
+        this.id_dt = dtoDt.getId_dt();
+        this.clubDirigido = dtoDt.getClubDirigido();
+        this.nombre = dtoDt.getNombre();
+    }
+
     public int getId_dt() {
         return id_dt;
     }
@@ -42,24 +50,8 @@ public class Dt{
         this.id_dt = id_dt;
     }
 
-    public Equipo getEquipo() {
-        return equipo;
-    }
-
-    public void setEquipo(Equipo equipo) {
-        this.equipo = equipo;
-    }
-
     public String getClubDirigido() {
         return clubDirigido;
-    }
-
-    public int getIdDt() {
-        return id_dt;
-    }
-
-    public void setIdDt(int id_dt) {
-        this.id_dt = id_dt;
     }
 
     public void setClubDirigido(String clubDirigido) {
@@ -73,4 +65,13 @@ public class Dt{
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+    /*public Equipo getEquipo() {
+        return equipo;
+    }
+
+    public void setEquipo(Equipo equipo) {
+        this.equipo = equipo;
+    }*/
+
 }

@@ -17,7 +17,7 @@ public class Jugador {
     @Column(name = "posicion_actual",nullable = false)
     private int posicionActual;
 
-    @ManyToOne//manytomany
+    @ManyToOne
     @JoinColumn(name = "cuit_equipo")
     private Equipo equipo;
 
@@ -39,21 +39,6 @@ public class Jugador {
         this.nombre = jDTO.getNombre();
         this.posicionActual = jDTO.getPosicionActual();
         this.equipo.setCUIT(jDTO.getCuitEquipo());
-    }
-
-    /** Primero verifica que no exista el contrato en el jugador, si no existe lo agrega a la lista de contratos
-     * @param contrato
-     * @return (true) si lo agregó, (false) si no.
-     */
-    public boolean agregarContrato(Contrato contrato){
-        for (Contrato con:this.getListaContratos()) {
-            if(con.equals(contrato)){
-                System.out.println("El jugador " + this.getNombre() + "posee un contrato duplicado.");
-                return false;
-            }
-        }
-        this.getListaContratos().add(contrato);
-        return true;
     }
 
     public int getDniJugador() {

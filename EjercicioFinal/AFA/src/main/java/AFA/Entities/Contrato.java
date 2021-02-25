@@ -27,11 +27,12 @@ public class Contrato {
 
     public Contrato(){  };
 
-    public Contrato(int idContrato, int cuitEquipo, int dniJugador, LocalDate fechaIn, LocalDate fechaFin, int posicion) {
+    public Contrato(int idContrato, int cuitEquipo, Jugador jugador, LocalDate fechaIn, LocalDate fechaFin, int posicion) {
         this.idContrato = idContrato;
         this.fechaIn = fechaIn;
         this.fechaFin = fechaFin;
         this.posicion = posicion;
+        this.jugador = jugador;
     }
 
     public  Contrato(DTO_Contrato contratoDTO){
@@ -39,6 +40,7 @@ public class Contrato {
         this.fechaIn = contratoDTO.getFechaIn();
         this.fechaFin = contratoDTO.getFechaFin();
         this.posicion = contratoDTO.getPosicion();
+        this.jugador = contratoDTO.getJugador();
     }
 
     public int getIdContrato() {

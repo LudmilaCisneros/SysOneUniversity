@@ -6,22 +6,22 @@ import AFA.Entities.Equipo;
 public class DTO_Equipo {
     private int CUIT;
     private String nombre;
-    private int idDt;
-    //private Dt dt;
+    private Dt dt;
 
     public DTO_Equipo(Equipo equipo) {
         this.CUIT = equipo.getCUIT();
         this.nombre = equipo.getNombre();
-        this.idDt = equipo.getDt().getIdDt();
-        //this.dt = equipo.getDt();
+        this.dt = equipo.getDt();
     }
-    public DTO_Equipo(int CUIT, String nombre,int idDt){
+
+    public DTO_Equipo(int CUIT, String nombre, Dt dt){
         this.CUIT = CUIT;
         this.nombre = nombre;
-        this.idDt = idDt;
-        //this.dt = dt;
+        this.dt = dt;
     }
-/*
+
+    public DTO_Equipo() { }
+
     public Dt getDt() {
         return dt;
     }
@@ -29,7 +29,7 @@ public class DTO_Equipo {
     public void setDt(Dt dt) {
         this.dt = dt;
     }
-*/
+
     public int getCUIT() {
         return this.CUIT;
     }
@@ -44,14 +44,6 @@ public class DTO_Equipo {
 
     public void setNombre(String DTO_nombre) {
         this.nombre = DTO_nombre;
-    }
-
-    public int getIdDt() {
-        return this.idDt;
-    }
-
-    public void setIdDt(int DTO_idDt) {
-        this.idDt = DTO_idDt;
     }
 
 }

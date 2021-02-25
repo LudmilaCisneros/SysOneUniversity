@@ -23,12 +23,12 @@ public class Ctrl_Contrato {
     public DTO_Contrato getContrato(@PathVariable int idContrato) {
         return servContrato.obtenerContrato(idContrato);
     }
-/*
+
     @PostMapping("/insertar")
     public void postContrato(@RequestBody DTO_Contrato dtoContrato) {
         servContrato.insertarContrato(dtoContrato);
     }
-
+/*
     @PutMapping("/modificar/{idContrato}")
     public void putContrato(@PathVariable int idContrato, @RequestBody DTO_Contrato dtoContrato) {
         servContrato.modificarContrato(idContrato, dtoContrato);

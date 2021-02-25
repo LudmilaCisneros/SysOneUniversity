@@ -1,15 +1,14 @@
 package AFA.Services;
 
+import AFA.DTOs.DTO_Dt;
 import AFA.DTOs.DTO_Equipo;
+import AFA.Entities.Dt;
 import AFA.Entities.Equipo;
-import AFA.Entities.Jugador;
 import AFA.Repositories.Repo_Equipo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -17,6 +16,9 @@ public class Serv_Equipo implements IServ_Equipo{
 
     @Autowired
     Repo_Equipo repoEquipo;
+
+    @Autowired//
+    Serv_Dt servDt;
 
     @Override
     public List<DTO_Equipo> obtenerEquipos(){
@@ -50,7 +52,17 @@ public class Serv_Equipo implements IServ_Equipo{
      * @return eqDTO
      */
     public DTO_Equipo convertirEquipoADTO(Equipo eq) {
-        return new DTO_Equipo(eq);
+
+        DTO_Equipo eqDTO = new DTO_Equipo();//debo hacer un obtener Dt y setearle al dt de dto
+        //Serv_Dt sd = new Serv_Dt();
+        //DTO_Dt dtDTO = sd.obtenerDt(eq.getDt().getIdDt());
+
+        eqDTO.setDt(servDt.convertirDTOaDt(servDt.obtenerDt(eq.getDt().getId_dt())));
+        eqDTO.setCUIT(eq.getCUIT());
+        eqDTO.setNombre(eq.getNombre());
+
+
+        return eqDTO;
     }
 
     /** Convierte un DTO a Equipo

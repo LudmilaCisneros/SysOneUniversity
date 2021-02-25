@@ -1,12 +1,13 @@
 package AFA.DTOs;
 
 import AFA.Entities.Contrato;
+import AFA.Entities.Jugador;
 
 import java.time.LocalDate;
 
 public class DTO_Contrato {
-    private int idContrato; //PK
-    private int dniJugador; //FK
+    private int idContrato;
+    private Jugador jugador;
     private LocalDate fechaIn;
     private LocalDate fechaFin;
     private int posicion;
@@ -17,13 +18,13 @@ public class DTO_Contrato {
         this.fechaIn = contrato.getFechaIn();
         this.fechaFin = contrato.getFechaFin();
         this.posicion = contrato.getPosicion();
-        this.dniJugador = contrato.getJugador().getDniJugador();
+        this.jugador = contrato.getJugador();
         this.nombreClub = contrato.getNombreClub();
     }
 
     public DTO_Contrato(int idContrato, int dniJugador, LocalDate fInicial, LocalDate fFinal, int posicion, String nombreClub){
         this.idContrato = idContrato;
-        this.dniJugador = dniJugador;
+        this.jugador = getJugador();
         this.fechaIn = fInicial;
         this.fechaFin = fFinal;
         this.posicion = posicion;
@@ -34,44 +35,40 @@ public class DTO_Contrato {
         return idContrato;
     }
 
-    public void setIdContrato(int DTO_idContrato) {
-        this.idContrato = DTO_idContrato;
+    public void setIdContrato(int idContrato) {
+        this.idContrato = idContrato;
     }
 
-    public int getDniJugador() {
-        return dniJugador;
+    public Jugador getJugador() {
+        return jugador;
     }
 
-    public void setDTO_dniJugador(int DTO_dniJugador) {
-        this.dniJugador = DTO_dniJugador;
+    public void setJugador(Jugador jugador) {
+        this.jugador = jugador;
     }
 
     public LocalDate getFechaIn() {
         return fechaIn;
     }
 
-    public void setFechaIn(LocalDate DTO_fechaIn) {
-        this.fechaIn = DTO_fechaIn;
+    public void setFechaIn(LocalDate fechaIn) {
+        this.fechaIn = fechaIn;
     }
 
     public LocalDate getFechaFin() {
         return fechaFin;
     }
 
-    public void setFechaFin(LocalDate DTO_fechaFin) {
-        this.fechaFin = DTO_fechaFin;
+    public void setFechaFin(LocalDate fechaFin) {
+        this.fechaFin = fechaFin;
     }
 
     public int getPosicion() {
         return posicion;
     }
 
-    public void setPosicion(int DTO_posicion) {
-        this.posicion = DTO_posicion;
-    }
-
-    public void setDniJugador(int dniJugador) {
-        this.dniJugador = dniJugador;
+    public void setPosicion(int posicion) {
+        this.posicion = posicion;
     }
 
     public String getNombreClub() {
@@ -81,4 +78,6 @@ public class DTO_Contrato {
     public void setNombreClub(String nombreClub) {
         this.nombreClub = nombreClub;
     }
+
+
 }

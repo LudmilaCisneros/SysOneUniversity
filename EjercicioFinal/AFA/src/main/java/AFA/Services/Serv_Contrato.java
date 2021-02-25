@@ -1,6 +1,8 @@
 package AFA.Services;
 
 import AFA.DTOs.DTO_Contrato;
+import AFA.DTOs.DTO_Jugador;
+import AFA.Entities.Jugador;
 import AFA.Repositories.Repo_Contrato;
 import AFA.Entities.Contrato;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,9 @@ public class Serv_Contrato implements IServ_Contrato{
 
     @Autowired
     Repo_Contrato repoContrato;
+
+    @Autowired
+    Serv_Jugador sj;
 
     @Override
     public List<DTO_Contrato> obtenerContratos()
@@ -70,7 +75,12 @@ public class Serv_Contrato implements IServ_Contrato{
 
     @Override
     public Contrato convertirDTOAContrato(DTO_Contrato cDTO) {
-        return new Contrato(cDTO);
+        Contrato c = new Contrato();
+        //Serv_Jugador sj = new Serv_Jugador();
+        Jugador jugador = sj.convertirDTOAJugador(sj.obtenerJugador(cDTO.getJugador().getDniJugador()));
+        c.setJugador(jugador);
+
+        return c;
     }
 
 }

@@ -11,7 +11,7 @@ import java.util.List;
 public class Equipo{
     @Id
     @Column(name = "cuit_equipo",nullable = false)
-    private int CUIT;// PK
+    private int CUIT;
 
     @Column(name = "nombre",nullable = false)
     private String nombre;
@@ -35,8 +35,7 @@ public class Equipo{
     public Equipo(DTO_Equipo eqDto){
         this.CUIT = eqDto.getCUIT();
         this.nombre = eqDto.getNombre();
-        this.dt.setId_dt(eqDto.getIdDt());
-        //this.dt = eqDto.getDt();//
+        this.dt = eqDto.getDt();
     }
 
     public int getCUIT() {
