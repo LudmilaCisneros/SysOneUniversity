@@ -34,13 +34,6 @@ public class Jugador {
         this.listaContratos = new ArrayList<>();
     }
 
-    public Jugador(DTO_Jugador jDTO) {
-        this.dniJugador = jDTO.getDNI();
-        this.nombre = jDTO.getNombre();
-        this.posicionActual = jDTO.getPosicionActual();
-        this.equipo.setCUIT(jDTO.getCuitEquipo());
-    }
-
     public int getDniJugador() {
         return dniJugador;
     }

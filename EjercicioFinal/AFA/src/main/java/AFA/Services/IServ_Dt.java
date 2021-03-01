@@ -13,7 +13,5 @@ public interface IServ_Dt {
 
     void insertarDt(DTO_Dt dtoDt);
 
-    void modificarDt(int idDt, DTO_Dt dtoDt);
-
     void eliminarDt(int idDt);
 }

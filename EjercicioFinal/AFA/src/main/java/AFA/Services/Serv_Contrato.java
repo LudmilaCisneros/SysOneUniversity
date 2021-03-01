@@ -1,7 +1,6 @@
 package AFA.Services;
 
 import AFA.DTOs.DTO_Contrato;
-import AFA.DTOs.DTO_Jugador;
 import AFA.Entities.Jugador;
 import AFA.Repositories.Repo_Contrato;
 import AFA.Entities.Contrato;
@@ -37,13 +36,6 @@ public class Serv_Contrato implements IServ_Contrato{
     }
 
     @Override
-    public void modificarContrato(int idContrato, DTO_Contrato dtoContrato) {
-        Contrato contrato = convertirDTOAContrato(dtoContrato);
-        contrato.setIdContrato(idContrato);
-        repoContrato.save(contrato);
-    }
-
-    @Override
     public void eliminarContrato(int idContrato) {
         repoContrato.deleteById(idContrato);
     }
@@ -67,16 +59,30 @@ public class Serv_Contrato implements IServ_Contrato{
     }
 
     public DTO_Contrato convertirContratoADTO(Contrato contrato) {
-        return new DTO_Contrato(contrato);
+        DTO_Contrato dto_contrato = new DTO_Contrato();
+        dto_contrato.setDni_jugador(contrato.getJugador().getDniJugador());
+        dto_contrato.setIdContrato(contrato.getIdContrato());
+        dto_contrato.setFechaIn(contrato.getFechaIn());
+        dto_contrato.setFechaFin(contrato.getFechaFin());
+        dto_contrato.setPosicion(contrato.getPosicion());
+        dto_contrato.setNombreClub(contrato.getNombreClub());
+
+        return dto_contrato;
     }
 
     public Contrato convertirDTOAContrato(DTO_Contrato cDTO) {
-        Contrato c = new Contrato();
-        Jugador jugador = sj.convertirDTOAJugador(sj.obtenerJugador(cDTO.getJugador().getDniJugador()));
+        Contrato cont = new Contrato();
+        Jugador jugador;
+        cont.setIdContrato(cDTO.getIdContrato());
+        cont.setFechaIn(cDTO.getFechaIn());
+        cont.setFechaFin(cDTO.getFechaFin());
+        cont.setPosicion(cDTO.getPosicion());
+        cont.setNombreClub(cDTO.getNombreClub());
 
-        c.setJugador(jugador);
+        jugador = sj.convertirDTOAJugador(sj.obtenerJugador(cDTO.getDni_jugador()));
+        cont.setJugador(jugador);
 
-        return c;
+        return cont;
     }
 
 }

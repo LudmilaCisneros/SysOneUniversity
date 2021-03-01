@@ -12,8 +12,5 @@ public interface IServ_Contrato {
 
     void insertarContrato(DTO_Contrato dtoContrato);
 
-    void modificarContrato(int idContrato, DTO_Contrato dtoContrato);
-
     void eliminarContrato(int idContrato);
-
 }

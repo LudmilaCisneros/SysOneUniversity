@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
 @RequestMapping("/jugador")
+@RestController
 public class Ctrl_Jugador {
 
     @Autowired
@@ -28,15 +28,9 @@ public class Ctrl_Jugador {
     public void postJugador(@RequestBody DTO_Jugador dtoJugador){
         servJugador.insertarJugador(dtoJugador);
     }
-/*
-    @PutMapping("/borrar/{DNI}")
-    public void putJugador(@PathVariable int dniJugador, @RequestBody DTO_Jugador dtoJugador) {
-        servJugador.modificarJugador(dniJugador, dtoJugador);
-    }
 
-    @DeleteMapping("/jugador/{id}")
+    @DeleteMapping("/borrar/{dniJugador}")
     public void deleteJugador(@PathVariable int dniJugador) {
         servJugador.eliminarJugador(dniJugador);
     }
-*/
 }

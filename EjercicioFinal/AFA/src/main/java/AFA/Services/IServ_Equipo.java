@@ -12,9 +12,6 @@ public interface IServ_Equipo {
 
     void insertarEquipo(DTO_Equipo dtoEquipo);
 
-    void modificarEquipo(int cuitEquipo, DTO_Equipo dtoEquipo);
-
     void eliminarEquipo(int cuitEquipo);
-
 }
 

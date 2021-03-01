@@ -1,11 +1,11 @@
 package AFA.Services;
 
 import AFA.DTOs.DTO_Dt;
-import AFA.DTOs.DTO_Equipo;
-import AFA.DTOs.DTO_Jugador;
+
 import AFA.Entities.Dt;
-import AFA.Entities.Jugador;
+import AFA.Entities.Equipo;
 import AFA.Repositories.Repo_Dt;
+import AFA.Repositories.Repo_Equipo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +17,9 @@ public class Serv_Dt implements IServ_Dt {
 
     @Autowired
     Repo_Dt repoDt;
+
+    @Autowired
+    Repo_Equipo repoEquipo;
 
     @Override
     public List<DTO_Dt> obtenerDts() {
@@ -34,21 +37,26 @@ public class Serv_Dt implements IServ_Dt {
     }
 
     @Override
-    public void modificarDt(int idDt, DTO_Dt dtoDt) {
-
-    }
-
-    @Override
-    public void eliminarDt(int idDt) {
-
-    }
+    public void eliminarDt(int idDt) { repoDt.deleteById(idDt); }
 
     public  Dt convertirDTOaDt(DTO_Dt dtoDt){
-        return new Dt(dtoDt);
+        Dt dtEntity = new Dt();
+        Serv_Equipo servEquipo = new Serv_Equipo();
+        Equipo eq;
+        dtEntity.setNombre(dtoDt.getNombre());
+        dtEntity.setClubDirigido(dtoDt.getClubDirigido());
+        dtEntity.setId_dt(dtoDt.getId_dt());
+
+        return dtEntity;
     }
 
     public DTO_Dt convertirDtADTO(Dt dt) {
-        return new DTO_Dt(dt);
+        DTO_Dt dtoDt = new DTO_Dt();
+        dtoDt.setNombre(dt.getNombre());
+        dtoDt.setClubDirigido(dt.getClubDirigido());
+        dtoDt.setId_dt(dt.getId_dt());
+
+        return dtoDt;
     }
 
     public List<DTO_Dt> convertirDtsADTO(List<Dt> list){

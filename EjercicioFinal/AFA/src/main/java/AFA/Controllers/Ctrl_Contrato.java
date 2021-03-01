@@ -14,7 +14,7 @@ public class Ctrl_Contrato {
     @Autowired
     Serv_Contrato servContrato;
 
-    @GetMapping("/ver")
+    @GetMapping("/ver")//ALL
     public List<DTO_Contrato> getContrato() {
         return servContrato.obtenerContratos();
     }
@@ -28,14 +28,9 @@ public class Ctrl_Contrato {
     public void postContrato(@RequestBody DTO_Contrato dtoContrato) {
         servContrato.insertarContrato(dtoContrato);
     }
-/*
-    @PutMapping("/modificar/{idContrato}")
-    public void putContrato(@PathVariable int idContrato, @RequestBody DTO_Contrato dtoContrato) {
-        servContrato.modificarContrato(idContrato, dtoContrato);
-    }
 
-    @DeleteMapping("/borrar/{id}")
+    @DeleteMapping("/borrar/{idContrato}")
     public void deleteContrato(@PathVariable int idContrato) {
         servContrato.eliminarContrato(idContrato);
-    }*/
+    }
 }

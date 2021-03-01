@@ -7,15 +7,16 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+
 @RequestMapping("/dt")
+@RestController
 public class Ctrl_Dt {
 
     @Autowired
     Serv_Dt servDt;
 
     @GetMapping("/ver")//ALL
-    public List<DTO_Dt> getDt() {
+    public List<DTO_Dt> getDts() {
         return servDt.obtenerDts();
     }
 
@@ -27,5 +28,10 @@ public class Ctrl_Dt {
     @PostMapping("/insertar")
     public void postDt(@RequestBody DTO_Dt dtoDt){
         servDt.insertarDt(dtoDt);
+    }
+
+    @DeleteMapping("/borrar/{idDt}")
+    public void deleteDt(@PathVariable int idDt) {
+        servDt.eliminarDt(idDt);
     }
 }

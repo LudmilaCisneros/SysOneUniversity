@@ -1,7 +1,5 @@
 package AFA.Entities;
 
-import AFA.DTOs.DTO_Equipo;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,12 +28,6 @@ public class Equipo{
         this.nombre = nombre;
         this.dt = dt;
         this.listaJugadores = new ArrayList<>();
-    }
-
-    public Equipo(DTO_Equipo eqDto){
-        this.CUIT = eqDto.getCUIT();
-        this.nombre = eqDto.getNombre();
-        this.dt = eqDto.getDt();
     }
 
     public int getCUIT() {

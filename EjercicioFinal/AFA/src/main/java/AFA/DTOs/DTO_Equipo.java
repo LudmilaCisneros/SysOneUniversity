@@ -1,33 +1,24 @@
 package AFA.DTOs;
 
-import AFA.Entities.Dt;
-import AFA.Entities.Equipo;
-
 public class DTO_Equipo {
     private int CUIT;
     private String nombre;
-    private Dt dt;
+    private int idDt;
 
-    public DTO_Equipo(Equipo equipo) {
-        this.CUIT = equipo.getCUIT();
-        this.nombre = equipo.getNombre();
-        this.dt = equipo.getDt();
-    }
-
-    public DTO_Equipo(int CUIT, String nombre, Dt dt){
+    public DTO_Equipo(int CUIT, String nombre, int idDt){
         this.CUIT = CUIT;
         this.nombre = nombre;
-        this.dt = dt;
+        this.idDt = idDt;
     }
 
     public DTO_Equipo() { }
 
-    public Dt getDt() {
-        return dt;
+    public int getIdDt() {
+        return idDt;
     }
 
-    public void setDt(Dt dt) {
-        this.dt = dt;
+    public void setIdDt(int idDt) {
+        this.idDt = idDt;
     }
 
     public int getCUIT() {

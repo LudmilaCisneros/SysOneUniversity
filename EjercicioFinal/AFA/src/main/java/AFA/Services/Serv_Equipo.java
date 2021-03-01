@@ -1,8 +1,6 @@
 package AFA.Services;
 
-import AFA.DTOs.DTO_Dt;
 import AFA.DTOs.DTO_Equipo;
-import AFA.Entities.Dt;
 import AFA.Entities.Equipo;
 import AFA.Repositories.Repo_Equipo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +15,7 @@ public class Serv_Equipo implements IServ_Equipo{
     @Autowired
     Repo_Equipo repoEquipo;
 
-    @Autowired//
+    @Autowired
     Serv_Dt servDt;
 
     @Override
@@ -36,13 +34,6 @@ public class Serv_Equipo implements IServ_Equipo{
     }
 
     @Override
-    public void modificarEquipo(int cuitEquipo, DTO_Equipo dtoEquipo) {
-        Equipo equipo = convertirDTOaEquipo(dtoEquipo);
-        equipo.setCUIT(cuitEquipo);
-        repoEquipo.save(equipo);
-    }
-
-    @Override
     public void eliminarEquipo(int cuitEquipo) {
         repoEquipo.deleteById(cuitEquipo);
     }
@@ -52,17 +43,12 @@ public class Serv_Equipo implements IServ_Equipo{
      * @return eqDTO
      */
     public DTO_Equipo convertirEquipoADTO(Equipo eq) {
+        DTO_Equipo dto_equipo = new DTO_Equipo();
+        dto_equipo.setIdDt(eq.getDt().getId_dt());
+        dto_equipo.setNombre(eq.getNombre());
+        dto_equipo.setCUIT(eq.getCUIT());
 
-        DTO_Equipo eqDTO = new DTO_Equipo();//debo hacer un obtener Dt y setearle al dt de dto
-        //Serv_Dt sd = new Serv_Dt();
-        //DTO_Dt dtDTO = sd.obtenerDt(eq.getDt().getIdDt());
-
-        eqDTO.setDt(servDt.convertirDTOaDt(servDt.obtenerDt(eq.getDt().getId_dt())));
-        eqDTO.setCUIT(eq.getCUIT());
-        eqDTO.setNombre(eq.getNombre());
-
-
-        return eqDTO;
+        return dto_equipo;
     }
 
     /** Convierte un DTO a Equipo
@@ -70,7 +56,13 @@ public class Serv_Equipo implements IServ_Equipo{
      * @return eqDTO
      */
     public Equipo convertirDTOaEquipo(DTO_Equipo eqDto) {
-        return new Equipo(eqDto);
+        Equipo equipo = new Equipo();
+
+        equipo.setCUIT(eqDto.getCUIT());
+        equipo.setNombre(eqDto.getNombre());
+        equipo.setDt(servDt.convertirDTOaDt(servDt.obtenerDt(eqDto.getIdDt())));
+
+        return equipo;
     }
 
     /** Convierte de DTO a Equipos

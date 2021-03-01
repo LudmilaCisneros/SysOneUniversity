@@ -1,6 +1,8 @@
 package AFA.Services;
 
 import AFA.DTOs.DTO_Jugador;
+import AFA.Entities.Equipo;
+import AFA.Repositories.Repo_Equipo;
 import AFA.Repositories.Repo_Jugador;
 import AFA.Entities.Jugador;
 
@@ -16,6 +18,9 @@ public class Serv_Jugador implements IServ_Jugador{
     @Autowired
     Repo_Jugador repoJugador;
 
+    @Autowired
+    Repo_Equipo repoEquipo;
+
     @Override
     public List<DTO_Jugador> obtenerJugadores(){
         return convertirJugadoresADTO((List<Jugador>) repoJugador.findAll());
@@ -29,13 +34,6 @@ public class Serv_Jugador implements IServ_Jugador{
     @Override
     public void insertarJugador(DTO_Jugador dtoJugador) {
         repoJugador.save(convertirDTOAJugador(dtoJugador));
-    }
-
-    @Override
-    public void modificarJugador(int dniJugador, DTO_Jugador dtoJugador) {
-        Jugador jugador = convertirDTOAJugador(dtoJugador);
-        jugador.setDniJugador(dniJugador);
-        repoJugador.save(jugador);
     }
 
     @Override
@@ -75,7 +73,14 @@ public class Serv_Jugador implements IServ_Jugador{
      * @return
      */
     public DTO_Jugador convertirJugadorADTO(Jugador jugador) {
-        return new DTO_Jugador(jugador);
+        DTO_Jugador dtoJugador = new DTO_Jugador();
+
+        dtoJugador.setNombre(jugador.getNombre());
+        dtoJugador.setDNI(jugador.getDniJugador());
+        dtoJugador.setPosicionActual(jugador.getPosicionActual());
+        dtoJugador.setCuitEquipo(jugador.getEquipo().getCUIT());
+
+        return dtoJugador;
     }
 
     /** Convierte un DTO a jugador
@@ -83,7 +88,18 @@ public class Serv_Jugador implements IServ_Jugador{
      * @return
      */
     public Jugador convertirDTOAJugador(DTO_Jugador jDTO) {
-        return new Jugador(jDTO);
+        Jugador jugador = new Jugador();
+        Serv_Equipo sE = new Serv_Equipo();
+        Equipo equipo;
+
+        jugador.setDniJugador(jDTO.getDNI());
+        jugador.setNombre(jDTO.getNombre());
+        jugador.setPosicionActual(jDTO.getPosicionActual());
+
+        equipo = repoEquipo.findById(jDTO.getCuitEquipo()).get();
+        jugador.setEquipo(equipo);
+
+        return jugador;
     }
 
 }

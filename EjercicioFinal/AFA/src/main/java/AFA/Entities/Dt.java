@@ -1,13 +1,10 @@
 package AFA.Entities;
 
-import AFA.DTOs.DTO_Dt;
-
 import javax.persistence.*;
 
 @Entity
 @Table(name = "dts")
 public class Dt{
-    //@GeneratedValue (strategy = GenerationType.AUTO)
     @Id
     @Column(name = "id_dt",nullable = false)
     private int id_dt;
@@ -18,7 +15,7 @@ public class Dt{
     @Column(name = "nombre",nullable = false)
     private String nombre;
 
-    @OneToOne(mappedBy = "dt")
+    @OneToOne(mappedBy = "dt",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Equipo equipo;
 
     public Dt(){    };
@@ -34,12 +31,6 @@ public class Dt{
     public Dt(String clubDirigido, String nombre,int id_dt){
         this(nombre,clubDirigido);
         this.id_dt = id_dt;
-    }
-
-    public Dt(DTO_Dt dtoDt) {
-        this.id_dt = dtoDt.getId_dt();
-        this.clubDirigido = dtoDt.getClubDirigido();
-        this.nombre = dtoDt.getNombre();
     }
 
     public int getId_dt() {
@@ -66,12 +57,12 @@ public class Dt{
         this.nombre = nombre;
     }
 
-    /*public Equipo getEquipo() {
+    public Equipo getEquipo() {
         return equipo;
     }
 
     public void setEquipo(Equipo equipo) {
         this.equipo = equipo;
-    }*/
+    }
 
 }

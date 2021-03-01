@@ -8,11 +8,7 @@ public class DTO_Dt {
     private String clubDirigido;
     private String nombre;
 
-    public DTO_Dt(Dt dt) {
-        this.id_dt = dt.getId_dt();
-        this.clubDirigido = dt.getClubDirigido();
-        this.nombre = dt.getNombre();
-    }
+    public DTO_Dt() { }
 
     public DTO_Dt(int id_dt, String clubDirigido, String nombre) {
         this.id_dt = id_dt;

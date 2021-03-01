@@ -9,9 +9,8 @@ import java.time.LocalDate;
 @Table(name = "contratos")
 public class Contrato {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_contrato")
-    private int idContrato; //PK
+    private int idContrato;
     @Column(name = "fecha_inicial")
     private LocalDate fechaIn;
     @Column(name = "fecha_final")
@@ -22,7 +21,7 @@ public class Contrato {
     private String nombreClub;
 
     @ManyToOne
-    @JoinColumn(name = "dni_jugador", referencedColumnName = "dni_jugador",nullable = false)
+    @JoinColumn(name = "dni_jugador")
     private Jugador jugador;
 
     public Contrato(){  };
@@ -34,15 +33,6 @@ public class Contrato {
         this.fechaFin = fechaFin;
         this.posicion = posicion;
         this.jugador = jugador;
-    }
-
-    public  Contrato(DTO_Contrato contratoDTO){
-        this.idContrato = contratoDTO.getIdContrato();
-        this.fechaIn = contratoDTO.getFechaIn();
-        this.fechaFin = contratoDTO.getFechaFin();
-        this.posicion = contratoDTO.getPosicion();
-        this.jugador = contratoDTO.getJugador();
-        this.nombreClub = contratoDTO.getNombreClub();
     }
 
     public int getIdContrato() {

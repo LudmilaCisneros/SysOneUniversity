@@ -27,15 +27,9 @@ public class Ctrl_Equipo {
     public void postEquipo(@RequestBody DTO_Equipo dtoEquipo){
         servEquipo.insertarEquipo(dtoEquipo);
     }
-/*
-    @PutMapping("/modificar/{cuitEquipo}")
-    public void putEquipo(@PathVariable int cuitEquipo, @RequestBody DTO_Equipo dtoEquipo) {
-        servEquipo.modificarEquipo(cuitEquipo, dtoEquipo);
-    }
 
     @DeleteMapping("/borrar/{cuitEquipo}")
     public void deleteEquipo(@PathVariable int cuitEquipo) {
         servEquipo.eliminarEquipo(cuitEquipo);
     }
-    */
 }
