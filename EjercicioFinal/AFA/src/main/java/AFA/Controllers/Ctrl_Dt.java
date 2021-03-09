@@ -9,14 +9,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@RequestMapping("/dt")
+@RequestMapping("/dts")
 @RestController
 public class Ctrl_Dt {
 
     @Autowired
     Serv_Dt servDt;
 
-    @GetMapping(value = {"/ver","/ver/{idDt}"})
+    @GetMapping(value = {"/","/{idDt}"})
     public List<DTO_Dt> getDt(@PathVariable(required = false) Integer idDt) {
 
         List<DTO_Dt> list = new ArrayList<>();

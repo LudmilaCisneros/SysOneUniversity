@@ -9,13 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/contrato")
+@RequestMapping("/contratos")
 public class Ctrl_Contrato {
 
     @Autowired
     Serv_Contrato servContrato;
 
-    @GetMapping(value = {"/ver","/ver/{idContrato}"})
+    @GetMapping(value = {"/","/{idContrato}"})
     public List<DTO_Contrato> getContrato(@PathVariable(required = false) Integer idContrato) {
         List<DTO_Contrato> list = new ArrayList<>();
 

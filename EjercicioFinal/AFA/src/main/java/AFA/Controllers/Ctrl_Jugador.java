@@ -7,14 +7,14 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
-@RequestMapping("/jugador")
+@RequestMapping("/jugadores")
 @RestController
 public class Ctrl_Jugador {
 
     @Autowired
     Serv_Jugador servJugador;
 
-    @GetMapping(value = {"/ver","/ver/{dniJugador}"})
+    @GetMapping(value = {"/","/{dniJugador}"})
     public List<DTO_Jugador> getJugador(@PathVariable(required = false) Integer dniJugador){
         List<DTO_Jugador> list = new ArrayList<>();
 

@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@RequestMapping("/equipo")
+@RequestMapping("/equipos")
 @RestController
 public class Ctrl_Equipo {
     @Autowired
     Serv_Equipo servEquipo;
 
-    @GetMapping(value = {"/ver","/ver/{cuitEquipo}"})
+    @GetMapping(value = {"/","/{cuitEquipo}"})
     public List<DTO_Equipo> getEquipo(@PathVariable(required = false) Integer cuitEquipo){
         List<DTO_Equipo> list = new ArrayList<>();
 
