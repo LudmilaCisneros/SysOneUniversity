@@ -1,7 +1,7 @@
 package AFA.Controllers;
 
 import AFA.DTOs.DTO_Dt;
-import AFA.Services.Serv_Dt;
+import AFA.ServicesImp.Serv_Dt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

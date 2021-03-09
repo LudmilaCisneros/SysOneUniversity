@@ -1,4 +1,4 @@
-package AFA.Services;
+package AFA.ServicesImp;
 
 import AFA.DTOs.DTO_Jugador;
 import AFA.Entities.Equipo;
@@ -6,6 +6,7 @@ import AFA.Repositories.Repo_Equipo;
 import AFA.Repositories.Repo_Jugador;
 import AFA.Entities.Jugador;
 
+import AFA.Services.IServ_Jugador;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class Serv_Jugador implements IServ_Jugador{
+public class Serv_Jugador implements IServ_Jugador {
 
     @Autowired
     Repo_Jugador repoJugador;

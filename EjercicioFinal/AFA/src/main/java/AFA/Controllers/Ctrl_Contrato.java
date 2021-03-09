@@ -1,7 +1,7 @@
 package AFA.Controllers;
 
 import AFA.DTOs.DTO_Contrato;
-import AFA.Services.Serv_Contrato;
+import AFA.ServicesImp.Serv_Contrato;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

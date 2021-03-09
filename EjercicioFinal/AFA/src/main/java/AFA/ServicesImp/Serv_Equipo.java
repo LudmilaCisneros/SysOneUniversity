@@ -1,8 +1,9 @@
-package AFA.Services;
+package AFA.ServicesImp;
 
 import AFA.DTOs.DTO_Equipo;
 import AFA.Entities.Equipo;
 import AFA.Repositories.Repo_Equipo;
+import AFA.Services.IServ_Equipo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class Serv_Equipo implements IServ_Equipo{
+public class Serv_Equipo implements IServ_Equipo {
 
     @Autowired
     Repo_Equipo repoEquipo;

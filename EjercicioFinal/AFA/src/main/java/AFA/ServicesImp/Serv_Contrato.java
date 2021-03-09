@@ -1,9 +1,10 @@
-package AFA.Services;
+package AFA.ServicesImp;
 
 import AFA.DTOs.DTO_Contrato;
 import AFA.Entities.Jugador;
 import AFA.Repositories.Repo_Contrato;
 import AFA.Entities.Contrato;
+import AFA.Services.IServ_Contrato;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class Serv_Contrato implements IServ_Contrato{
+public class Serv_Contrato implements IServ_Contrato {
 
     @Autowired
     Repo_Contrato repoContrato;

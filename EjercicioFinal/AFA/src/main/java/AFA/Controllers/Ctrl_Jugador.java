@@ -1,7 +1,7 @@
 package AFA.Controllers;
 
 import AFA.DTOs.DTO_Jugador;
-import AFA.Services.Serv_Jugador;
+import AFA.ServicesImp.Serv_Jugador;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
