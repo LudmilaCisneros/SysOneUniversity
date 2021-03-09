@@ -5,6 +5,7 @@ import AFA.Services.Serv_Contrato;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -14,14 +15,18 @@ public class Ctrl_Contrato {
     @Autowired
     Serv_Contrato servContrato;
 
-    @GetMapping("/ver")//ALL
-    public List<DTO_Contrato> getContrato() {
-        return servContrato.obtenerContratos();
-    }
+    @GetMapping(value = {"/ver","/ver/{idContrato}"})
+    public List<DTO_Contrato> getContrato(@PathVariable(required = false) Integer idContrato) {
+        List<DTO_Contrato> list = new ArrayList<>();
 
-    @GetMapping("/ver/{idContrato}")
-    public DTO_Contrato getContrato(@PathVariable int idContrato) {
-        return servContrato.obtenerContrato(idContrato);
+        if(idContrato != null){
+            list.add(servContrato.obtenerContrato(idContrato));
+        }
+        else{
+            list = servContrato.obtenerContratos();
+        }
+
+        return list;
     }
 
     @PostMapping("/insertar")

@@ -5,7 +5,7 @@ import AFA.Services.Serv_Jugador;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.*;
 
 @RequestMapping("/jugador")
 @RestController
@@ -14,14 +14,18 @@ public class Ctrl_Jugador {
     @Autowired
     Serv_Jugador servJugador;
 
-    @GetMapping("/ver")//ALL
-    public List<DTO_Jugador> getJugadores(){
-        return servJugador.obtenerJugadores();
-    }
+    @GetMapping(value = {"/ver","/ver/{dniJugador}"})
+    public List<DTO_Jugador> getJugador(@PathVariable(required = false) Integer dniJugador){
+        List<DTO_Jugador> list = new ArrayList<>();
 
-    @GetMapping("/ver/{dniJugador}")
-    public DTO_Jugador getJugador(@PathVariable int dniJugador){
-    return servJugador.obtenerJugador(dniJugador);
+        if(dniJugador != null){
+            list.add(servJugador.obtenerJugador(dniJugador));
+        }
+        else{
+            list = servJugador.obtenerJugadores();
+        }
+
+        return list;
     }
 
     @PostMapping("/insertar")

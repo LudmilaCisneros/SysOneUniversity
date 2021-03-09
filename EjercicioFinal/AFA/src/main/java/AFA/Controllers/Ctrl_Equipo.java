@@ -5,6 +5,7 @@ import AFA.Services.Serv_Equipo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RequestMapping("/equipo")
@@ -13,14 +14,18 @@ public class Ctrl_Equipo {
     @Autowired
     Serv_Equipo servEquipo;
 
-    @GetMapping("/ver")//ALL
-    public List<DTO_Equipo> getEquipos() {
-        return servEquipo.obtenerEquipos();
-    }
+    @GetMapping(value = {"/ver","/ver/{cuitEquipo}"})
+    public List<DTO_Equipo> getEquipo(@PathVariable(required = false) Integer cuitEquipo){
+        List<DTO_Equipo> list = new ArrayList<>();
 
-    @GetMapping("/ver/{cuitEquipo}")
-    public DTO_Equipo getEquipo(@PathVariable int cuitEquipo){
-        return servEquipo.obtenerEquipo(cuitEquipo);
+        if(cuitEquipo != null){
+            list.add(servEquipo.obtenerEquipo(cuitEquipo));
+        }
+        else{
+            list = servEquipo.obtenerEquipos();
+        }
+
+        return list;
     }
 
     @PostMapping("/insertar")
