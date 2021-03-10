@@ -1,6 +1,7 @@
 package AFA.Controllers;
 
 import AFA.DTOs.DTO_Dt;
+import AFA.Exceptions.NotFoundException;
 import AFA.ServicesImp.Serv_Dt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +23,12 @@ public class Ctrl_Dt {
         List<DTO_Dt> list = new ArrayList<>();
 
         if(idDt != null){
-            list.add(servDt.obtenerDt(idDt));
+            try{
+                list.add(servDt.obtenerDt(idDt));
+            }
+            catch (Exception e){
+                throw new NotFoundException("Id " + idDt + " No encontrado");
+            }
         }
         else{
             list = servDt.obtenerDts();

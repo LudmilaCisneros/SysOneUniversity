@@ -1,0 +1,16 @@
+package AFA.Validators;
+
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
+
+public class Validator_Contrato implements Validator {
+    @Override
+    public boolean supports(Class<?> aClass) {
+        return false;
+    }
+
+    @Override
+    public void validate(Object o, Errors errors) {
+
+    }
+}

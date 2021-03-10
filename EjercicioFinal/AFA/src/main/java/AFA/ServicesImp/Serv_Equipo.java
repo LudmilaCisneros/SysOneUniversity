@@ -2,6 +2,8 @@ package AFA.ServicesImp;
 
 import AFA.DTOs.DTO_Equipo;
 import AFA.Entities.Equipo;
+import AFA.Exceptions.DTNonexistentException;
+import AFA.Exceptions.InternalServerErrorException;
 import AFA.Repositories.Repo_Dt;
 import AFA.Repositories.Repo_Equipo;
 import AFA.Services.IServ_Equipo;
@@ -60,10 +62,14 @@ public class Serv_Equipo implements IServ_Equipo {
     public Equipo convertirDTOaEquipo(DTO_Equipo eqDto) {
         Equipo equipo = new Equipo();
 
-        equipo.setCUIT(eqDto.getCUIT());
-        equipo.setNombre(eqDto.getNombre());
-        equipo.setDt(repoDt.findById(eqDto.getIdDt()).get());
-        //equipo.setDt(servDt.convertirDTOaDt(servDt.obtenerDt(eqDto.getIdDt())));
+        try{
+            equipo.setCUIT(eqDto.getCUIT());
+            equipo.setNombre(eqDto.getNombre());
+            equipo.setDt(repoDt.findById(eqDto.getIdDt()).get());
+        }catch(Exception e){
+            throw new DTNonexistentException();
+        }
+
 
         return equipo;
     }
