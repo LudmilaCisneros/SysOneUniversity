@@ -28,12 +28,12 @@ public class Ctrl_Equipo {
         return list;
     }
 
-    @PostMapping("/insertar")
+    @PostMapping("/")
     public void postEquipo(@RequestBody DTO_Equipo dtoEquipo){
         servEquipo.insertarEquipo(dtoEquipo);
     }
 
-    @DeleteMapping("/borrar/{cuitEquipo}")
+    @DeleteMapping("/{cuitEquipo}")
     public void deleteEquipo(@PathVariable int cuitEquipo) {
         servEquipo.eliminarEquipo(cuitEquipo);
     }

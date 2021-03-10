@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@RestController
 @RequestMapping("/contratos")
+@RestController
 public class Ctrl_Contrato {
 
     @Autowired
@@ -29,12 +29,12 @@ public class Ctrl_Contrato {
         return list;
     }
 
-    @PostMapping("/insertar")
+    @PostMapping("/")
     public void postContrato(@RequestBody DTO_Contrato dtoContrato) {
         servContrato.insertarContrato(dtoContrato);
     }
 
-    @DeleteMapping("/borrar/{idContrato}")
+    @DeleteMapping("/{idContrato}")
     public void deleteContrato(@PathVariable int idContrato) {
         servContrato.eliminarContrato(idContrato);
     }

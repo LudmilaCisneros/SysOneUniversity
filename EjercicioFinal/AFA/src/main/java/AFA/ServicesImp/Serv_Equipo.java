@@ -2,6 +2,7 @@ package AFA.ServicesImp;
 
 import AFA.DTOs.DTO_Equipo;
 import AFA.Entities.Equipo;
+import AFA.Repositories.Repo_Dt;
 import AFA.Repositories.Repo_Equipo;
 import AFA.Services.IServ_Equipo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ public class Serv_Equipo implements IServ_Equipo {
     Repo_Equipo repoEquipo;
 
     @Autowired
-    Serv_Dt servDt;
+    Repo_Dt repoDt;
 
     @Override
     public List<DTO_Equipo> obtenerEquipos(){
@@ -61,7 +62,8 @@ public class Serv_Equipo implements IServ_Equipo {
 
         equipo.setCUIT(eqDto.getCUIT());
         equipo.setNombre(eqDto.getNombre());
-        equipo.setDt(servDt.convertirDTOaDt(servDt.obtenerDt(eqDto.getIdDt())));
+        equipo.setDt(repoDt.findById(eqDto.getIdDt()).get());
+        //equipo.setDt(servDt.convertirDTOaDt(servDt.obtenerDt(eqDto.getIdDt())));
 
         return equipo;
     }

@@ -31,12 +31,12 @@ public class Ctrl_Dt {
         return list;
     }
 
-    @PostMapping("/insertar")
+    @PostMapping("/")
     public void postDt(@RequestBody DTO_Dt dtoDt){
         servDt.insertarDt(dtoDt);
     }
 
-    @DeleteMapping("/borrar/{idDt}")
+    @DeleteMapping("/{idDt}")
     public void deleteDt(@PathVariable int idDt) {
         servDt.eliminarDt(idDt);
     }

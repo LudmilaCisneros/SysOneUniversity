@@ -28,12 +28,12 @@ public class Ctrl_Jugador {
         return list;
     }
 
-    @PostMapping("/insertar")
+    @PostMapping("/")
     public void postJugador(@RequestBody DTO_Jugador dtoJugador){
         servJugador.insertarJugador(dtoJugador);
     }
 
-    @DeleteMapping("/borrar/{dniJugador}")
+    @DeleteMapping("/{dniJugador}")
     public void deleteJugador(@PathVariable int dniJugador) {
         servJugador.eliminarJugador(dniJugador);
     }
