@@ -2,14 +2,12 @@ package AFA.ServicesImp;
 
 import AFA.DTOs.DTO_Equipo;
 import AFA.Entities.Equipo;
-import AFA.Exceptions.DTNonexistentException;
-import AFA.Exceptions.InternalServerErrorException;
 import AFA.Repositories.Repo_Dt;
 import AFA.Repositories.Repo_Equipo;
 import AFA.Services.IServ_Equipo;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,7 +46,6 @@ public class Serv_Equipo implements IServ_Equipo {
      */
     public DTO_Equipo convertirEquipoADTO(Equipo eq) {
         DTO_Equipo dto_equipo = new DTO_Equipo();
-        dto_equipo.setIdDt(eq.getDt().getId_dt());
         dto_equipo.setNombre(eq.getNombre());
         dto_equipo.setCUIT(eq.getCUIT());
 
@@ -59,17 +56,11 @@ public class Serv_Equipo implements IServ_Equipo {
      * @param eqDto
      * @return eqDTO
      */
-    public Equipo convertirDTOaEquipo(DTO_Equipo eqDto) {
+    public Equipo convertirDTOaEquipo(DTO_Equipo eqDto){
         Equipo equipo = new Equipo();
 
-        try{
             equipo.setCUIT(eqDto.getCUIT());
             equipo.setNombre(eqDto.getNombre());
-            equipo.setDt(repoDt.findById(eqDto.getIdDt()).get());
-        }catch(Exception e){
-            throw new DTNonexistentException();
-        }
-
 
         return equipo;
     }

@@ -22,10 +22,9 @@ public class Ctrl_Contrato {
         if(idContrato != null){
             list.add(servContrato.obtenerContrato(idContrato));
         }
-        else{
+        else {
             list = servContrato.obtenerContratos();
         }
-
         return list;
     }
 

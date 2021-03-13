@@ -5,8 +5,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.NOT_FOUND)
 public class NotFoundException extends RuntimeException{
-    private static final String informacion = "Not Found Exception(404)";
-
     /**
      * Constructs a new runtime exception with the specified detail message.
      * The cause is not initialized, and may subsequently be initialized by a
@@ -16,6 +14,6 @@ public class NotFoundException extends RuntimeException{
      *                later retrieval by the {@link #getMessage()} method.
      */
     public NotFoundException(String message) {
-        super(informacion +". "+ message);
+        super(message);
     }
 }

@@ -1,20 +1,12 @@
 package AFA.DTOs;
 
-import AFA.Entities.Dt;
-
 public class DTO_Dt {
 
     private int id_dt;
-    private String clubDirigido;
     private String nombre;
+    private int cuitEquipo;
 
     public DTO_Dt() { }
-
-    public DTO_Dt(int id_dt, String clubDirigido, String nombre) {
-        this.id_dt = id_dt;
-        this.clubDirigido = clubDirigido;
-        this.nombre = nombre;
-    }
 
     public int getId_dt() {
         return id_dt;
@@ -24,19 +16,19 @@ public class DTO_Dt {
         this.id_dt = id_dt;
     }
 
-    public String getClubDirigido() {
-        return clubDirigido;
-    }
-
-    public void setClubDirigido(String clubDirigido) {
-        this.clubDirigido = clubDirigido;
-    }
-
     public String getNombre() {
         return nombre;
     }
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public int getCuitEquipo() {
+        return cuitEquipo;
+    }
+
+    public void setCuitEquipo(int cuitEquipo) {
+        this.cuitEquipo = cuitEquipo;
     }
 }

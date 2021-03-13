@@ -9,13 +9,11 @@ public class Dt{
     @Column(name = "id_dt",nullable = false)
     private int id_dt;
 
-    @Column(name = "nombre_equipo",nullable = false)
-    private String clubDirigido;
-
     @Column(name = "nombre",nullable = false)
     private String nombre;
 
-    @OneToOne(mappedBy = "dt")
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)//
+    @JoinColumn(name = "cuit_equipo", referencedColumnName = "cuit_equipo")
     private Equipo equipo;
 
     public Dt(){    };
@@ -23,13 +21,8 @@ public class Dt{
     public Dt(String nombre){
         this.nombre = nombre;
     }
-
-    public Dt(String nombre,String clubDirigido){
-        this.nombre = nombre;
-        this.clubDirigido = clubDirigido;
-    }
-    public Dt(String clubDirigido, String nombre,int id_dt){
-        this(nombre,clubDirigido);
+    public Dt( String nombre,int id_dt){
+        this(nombre);
         this.id_dt = id_dt;
     }
 
@@ -39,14 +32,6 @@ public class Dt{
 
     public void setId_dt(int id_dt) {
         this.id_dt = id_dt;
-    }
-
-    public String getClubDirigido() {
-        return clubDirigido;
-    }
-
-    public void setClubDirigido(String clubDirigido) {
-        this.clubDirigido = clubDirigido;
     }
 
     public String getNombre() {

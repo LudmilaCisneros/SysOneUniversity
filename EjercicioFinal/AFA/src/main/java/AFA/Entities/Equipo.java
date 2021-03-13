@@ -14,8 +14,7 @@ public class Equipo{
     @Column(name = "nombre",nullable = false)
     private String nombre;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
-    @JoinColumn(name = "id_dt", referencedColumnName = "id_dt")
+    @OneToOne(mappedBy = "equipo")
     private Dt dt;
 
     @OneToMany(mappedBy = "equipo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)

@@ -6,16 +6,7 @@ public class DTO_Jugador {
     private int posicionActual;
     private int cuitEquipo;
 
-    public DTO_Jugador(int DNI, String nombre, int dto_posicionActual , int cuit_equipo) {
-        this.DNI = DNI;
-        this.nombre = nombre;
-        this.posicionActual = dto_posicionActual;
-        this.cuitEquipo = cuit_equipo;
-    }
-
-    public DTO_Jugador() {
-
-    }
+    public DTO_Jugador() { }
 
     public int getCuitEquipo() {
         return cuitEquipo;

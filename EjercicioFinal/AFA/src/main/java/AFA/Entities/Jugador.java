@@ -1,5 +1,4 @@
 package AFA.Entities;
-import AFA.DTOs.DTO_Jugador;
 
 import javax.persistence.*;
 import java.util.ArrayList;

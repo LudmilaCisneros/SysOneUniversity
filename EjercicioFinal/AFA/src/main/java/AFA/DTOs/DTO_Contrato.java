@@ -1,7 +1,5 @@
 package AFA.DTOs;
 
-import AFA.Entities.Contrato;
-
 import java.time.LocalDate;
 
 public class DTO_Contrato {
@@ -12,18 +10,7 @@ public class DTO_Contrato {
     private String nombreClub;
     private int dni_jugador;
 
-    public DTO_Contrato(int idContrato, int dniJugador, LocalDate fInicial, LocalDate fFinal, int posicion, String nombreClub){
-        this.idContrato = idContrato;
-        this.dni_jugador = dniJugador;
-        this.fechaIn = fInicial;
-        this.fechaFin = fFinal;
-        this.posicion = posicion;
-        this.nombreClub = nombreClub;
-    }
-
-    public DTO_Contrato() {
-
-    }
+    public DTO_Contrato() { }
 
     public int getDni_jugador() {
         return dni_jugador;

@@ -24,9 +24,7 @@ public class ExceptionResponse {
         return timestamp;
     }
 
-    public String getMensaje() {
-        return mensaje;
-    }
+    public String getMensaje() { return mensaje; }
 
     public String getDetalles() {
         return detalles;

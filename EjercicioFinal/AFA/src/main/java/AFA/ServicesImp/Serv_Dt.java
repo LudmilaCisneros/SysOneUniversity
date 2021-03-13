@@ -5,6 +5,7 @@ import AFA.DTOs.DTO_Dt;
 import AFA.Entities.Dt;
 import AFA.Entities.Equipo;
 import AFA.Repositories.Repo_Dt;
+import AFA.Repositories.Repo_Equipo;
 import AFA.Services.IServ_Dt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,9 @@ public class Serv_Dt implements IServ_Dt {
     @Autowired
     Repo_Dt repoDt;
 
+    @Autowired
+    Repo_Equipo repoEquipo;
+
     @Override
     public List<DTO_Dt> obtenerDts() {
         return convertirDtsADTO((List<Dt>) repoDt.findAll());
@@ -25,7 +29,7 @@ public class Serv_Dt implements IServ_Dt {
 
     @Override
     public DTO_Dt obtenerDt(int idDt) {
-            return convertirDtADTO(repoDt.findById(idDt).get());
+        return convertirDtADTO(repoDt.findById(idDt).get());
     }
 
     @Override
@@ -41,8 +45,8 @@ public class Serv_Dt implements IServ_Dt {
         Serv_Equipo servEquipo = new Serv_Equipo();
         Equipo eq;
         dtEntity.setNombre(dtoDt.getNombre());
-        dtEntity.setClubDirigido(dtoDt.getClubDirigido());
         dtEntity.setId_dt(dtoDt.getId_dt());
+        dtEntity.setEquipo(repoEquipo.findById(dtoDt.getCuitEquipo()).get());
 
         return dtEntity;
     }
@@ -50,8 +54,8 @@ public class Serv_Dt implements IServ_Dt {
     public DTO_Dt convertirDtADTO(Dt dt) {
         DTO_Dt dtoDt = new DTO_Dt();
         dtoDt.setNombre(dt.getNombre());
-        dtoDt.setClubDirigido(dt.getClubDirigido());
         dtoDt.setId_dt(dt.getId_dt());
+        dtoDt.setCuitEquipo(dt.getEquipo().getCUIT());
 
         return dtoDt;
     }
