@@ -12,7 +12,7 @@ public class Dt{
     @Column(name = "nombre",nullable = false)
     private String nombre;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)//
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)//
     @JoinColumn(name = "cuit_equipo", referencedColumnName = "cuit_equipo")
     private Equipo equipo;
 

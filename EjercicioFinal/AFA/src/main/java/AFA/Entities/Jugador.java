@@ -10,7 +10,7 @@ public class Jugador {
 
     @Id
     @Column(name = "dni_jugador",nullable = false)
-    private int dniJugador;// PK
+    private int dniJugador;
     @Column(name = "nombre",nullable = false)
     private String nombre;
     @Column(name = "posicion_actual",nullable = false)

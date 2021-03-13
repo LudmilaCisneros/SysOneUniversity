@@ -14,7 +14,7 @@ public class Equipo{
     @Column(name = "nombre",nullable = false)
     private String nombre;
 
-    @OneToOne(mappedBy = "equipo")
+    @OneToOne(mappedBy = "equipo",cascade = CascadeType.REMOVE)
     private Dt dt;
 
     @OneToMany(mappedBy = "equipo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)

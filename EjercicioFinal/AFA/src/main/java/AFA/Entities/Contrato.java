@@ -1,7 +1,5 @@
 package AFA.Entities;
 
-import AFA.DTOs.DTO_Contrato;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 
